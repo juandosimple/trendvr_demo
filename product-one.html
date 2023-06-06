@@ -10,204 +10,61 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <style>
-        body {
-            background: #f8f8f8;
-            font-family: 'Lato', sans-serif;
-            /* font:13px/1.2 "Lato","Helvetica Neue","Helvetica","Arial","Nimbus Sans L","Nimbus Sans D OT","Liberation Sans",sans-serif */
-        }
-
-        body img {
-            max-width: 100%;
-        }
-
-        .navegation-container {
-            position: fixed;
-            top: 0;
-        }
-
-        .first-navigation {
-            align-items: center;
+        .b-breadcrumbs .b-breadcrumbs-list {
             display: flex;
-            border-bottom: 1px solid #ddd;
-            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
         }
 
-        .first-navigation_logo {
-            margin: 0 2rem;
+        .b-breadcrumbs .b-breadcrumbs-list li span {
+            margin: 0 2px;
+            font-weight: 500;
+            letter-spacing: .2px;
         }
 
-        .first-navigation .first-navigation_search {
+        .b-breadcrumbs .b-breadcrumbs-list li a {
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 1.2;
+            color: #3a3a3a;
+        }
+
+        .b-returns {
+            display: flex;
+        }
+
+        .b-returns div {
             width: 50%;
-            display: flex;
-            align-items: center;
-        }
-
-        .first-navigation .first-navigation_search button {
-            background: #fff;
-            border: 0;
-            height: 54px;
-            padding: 0 2rem;
-            border-right: 1px solid #ddd;
-        }
-
-        .first-navigation .first-navigation_search input {
-            height: 54px;
-            width: 90%;
-            border: 0;
-            border-left: 1px solid #ddd;
-        }
-
-
-        .first-navigation .first-navigation_settings {
-            margin-left: 10px;
-        }
-
-        .first-navigation .first-navigation_settings ul {
-            align-items: center;
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .first-navigation .first-navigation_settings ul li {
-            margin-right: 20px;
-        }
-
-        .first-navigation .first-navigation_settings ul li a {
-            color: #3a3a3a
-        }
-
-        .first-navigation .first-navigation_gender_container {
-            display: flex;
-        }
-
-        .first-navigation .first-navigation_gender_container a,
-        .first-navigation .first-navigation_gender_container a {
-            color: #3a3a3a;
-            text-decoration: none;
-            padding: 1rem;
-            border-left: 1px solid #ddd;
-            width: 110px;
-            text-align: center;
-            border-bottom: 1px solid transparent;
-        }
-
-        .first-navigation .first-navigation_gender_container a:first-child {
-            font-weight: bold;
-            border-bottom: 1px solid #3a3a3a;
-        }
-
-        .b-promotion_header-wrapper {
-            background: #ff7bbb;
-            padding: 0.5rem 0;
-        }
-
-        .b-promotion_header-wrapper a {
-            text-transform: uppercase;
-            color: #3a3a3a;
-            text-decoration: none;
-            font-size: .8rem;
-            text-align: center;
-            display: block;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-        }
-
-        .navbar-expand-lg .navbar-collapse {
-            justify-content: center;
-            font-size: .9rem
-        }
-
-        .l-footer-top {
-            margin: 2rem;
-        }
-
-        .l-footer-top .b-footer_top {
-            display: flex;
-            justify-content: center;
             border: 1px solid #ddd;
-            padding: 1rem;
-        }
-
-        footer {
-            padding-bottom: 4rem;
-        }
-
-        footer h2 {
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-size: .8rem;
-        }
-
-        footer ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        footer ul li a {
-            color: #3a3a3a;
-            text-decoration: none;
-            font-size: .9rem;
-        }
-
-        footer #quick-links select {
-            background: #fff;
-            border: 1px solid #ddd;
-            height: 32px;
-            line-height: 32px;
-            border-radius: 0;
-            box-shadow: none;
-            box-sizing: border-box;
-            color: inherit;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: normal;
-            height: 32px;
-            line-height: 18px;
-            outline: none;
-            padding: 0 36px 0 16px;
+            padding: 15px;
             position: relative;
-            -webkit-user-select: none;
-            user-select: none;
-            width: 100%;
         }
 
-        footer #quick-links ul {
-            margin-bottom: 2rem;
+        .b-returns div:last-child {
+            border-left: 1px solid transparent;
         }
 
-        footer #quick-links ul li {
-            border: solid 1px #ddd;
-            border-bottom-color: transparent;
-        }
-
-        footer #quick-links ul li:last-child {
-            border-bottom-color: #ddd;
-        }
-
-        footer #quick-links ul li a {
-            align-items: center;
-            border-top: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 15px 15px 20px;
+        .b-returns div a {
             text-decoration: none;
-            width: 100%;
-            background-color: transparent;
-            border: none;
+            color: #3a3a3a;
+            text-transform: uppercase;
+            margin-left:15px;
         }
 
-        footer #about_us ul li,
-        footer #information ul li{
+        .b-returns div:last-child:before {
+            background: #f69;
+            content: "";
             display: block;
-            margin-bottom: 5px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
         }
-
     </style>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
@@ -277,7 +134,120 @@
     </div>
     <div class="container" style="padding-top:1rem;padding-bottom:1rem;">
         <div class="row">
+            <div class="col-8">
+                <div style="display:flex;overflow: hidden;border-left: 1px solid #ddd;border-right: 1px solid #ddd;">
+                    <img src="./assets/img/product-one_picture_1.webp" alt="">
+                    <img src="./assets/img/product-one_picture_2.webp" alt="">
+                </div>
+            </div>
+            <div class="col-4">
+                <nav class="b-breadcrumbs">
+                    <ol class="b-breadcrumbs-list" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                        <li class="b-breadcrumbs-item">
+                            <a class="b-breadcrumbs-link" href="https://www.boohoo.com/" data-tau="breadcrumbs_link"
+                                itemprop="item">
+                                <span itemprop="name">Home</span>
+                            </a>
+                        </li>
+                        <li class="b-breadcrumbs-item">
+                            <span class="b-breadcrumbs-icon">/</span>
+                            <a class="b-breadcrumbs-link" href="https://www.boohoo.com/womens"
+                                data-tau="breadcrumbs_link" itemprop="item">
+                                <span itemprop="name">WOMENS</span>
+                            </a>
+                        </li>
+                        <li class="b-breadcrumbs-item">
+                            <span class="b-breadcrumbs-icon">/</span>
+                            <a class="b-breadcrumbs-link" href="https://www.boohoo.com/womens/collections"
+                                data-tau="breadcrumbs_link" itemprop="item">
+                                <span itemprop="name">Collections</span>
+                            </a>
+                        </li>
+                        <li class="b-breadcrumbs-item">
+                            <span class="b-breadcrumbs-icon">/</span>
+                            <a class="b-breadcrumbs-link" aria-current="page"
+                                href="https://www.boohoo.com/pantone-boxy-zip-through-hoodie/GZZ56941-4.html"
+                                data-tau="breadcrumbs_link" itemprop="item">
+                                <span itemprop="name">Product</span>
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-12">
+                <div class="b-returns">
+                    <div></div>
+                    <div><a href="#">Delivery & Returns</a></div>
+                </div>
+            </div>
+            <div class="col-6 b-product_section m-description">
+                <h1>PRODUCT DETAILS</h1>
+                <p>
+                    This Mental Health Awareness Month we’ve teamed up with PANTONE to serve you mood boosting pieces.
+                    Whatever your vibe, there’s a colour to suit you.
+                </p>
 
+                <p>Find your colour:</p>
+                <ul>
+                    <li>Feel revived and replenished in Love Bird.</li>
+                    <li>Feel electric and exhilarated in Sonic Blue.</li>
+                    <li>Feel spiritual and enchanted in Liberty.</li>
+                    <li>Feel refreshed and invigorated in Poison Green.</li>
+                    <li>Feel peace-of-mind and mystical in Sheer Lilac.</li>
+                    <li>Feel high-spirited and tantalizing in Pink Glo.</li>
+                    <li>Feel cleansed and soothed in Blue Radiance.</li>
+                    <li>Feel energized and vibrant in Turmeric.</li>
+                </ul>
+
+
+                <p>This garment is READY FOR THE FUTURE.</p>
+                <p>
+                    The Boohoo Group are members of Better Cotton. By choosing our cotton products, you’re supporting
+                    Boohoo
+                    Groups investment in Better Cotton’s mission. This product is sourced via a system of mass balance
+                    and
+                    therefore may not contain Better Cotton. Learn more at Better Cotton
+                    Find out more about our material goals.
+                    <br>
+                    READY FOR THE FUTURE GUIDELINES.
+                    <br>
+                    #GZZ56941-4
+                </p>
+            </div>
+            <div class="col-6 b-product_section">
+                <h1>COMPLETE THE LOOK</h1>
+                <p>
+                    This Mental Health Awareness Month we’ve teamed up with PANTONE to serve you mood boosting pieces.
+                    Whatever your vibe, there’s a colour to suit you.
+                </p>
+
+                <p>Find your colour:</p>
+                <ul>
+                    <li>Feel revived and replenished in Love Bird.</li>
+                    <li>Feel electric and exhilarated in Sonic Blue.</li>
+                    <li>Feel spiritual and enchanted in Liberty.</li>
+                    <li>Feel refreshed and invigorated in Poison Green.</li>
+                    <li>Feel peace-of-mind and mystical in Sheer Lilac.</li>
+                    <li>Feel high-spirited and tantalizing in Pink Glo.</li>
+                    <li>Feel cleansed and soothed in Blue Radiance.</li>
+                    <li>Feel energized and vibrant in Turmeric.</li>
+                </ul>
+
+
+                <p>This garment is READY FOR THE FUTURE.</p>
+                <p>
+                    The Boohoo Group are members of Better Cotton. By choosing our cotton products, you’re supporting
+                    Boohoo
+                    Groups investment in Better Cotton’s mission. This product is sourced via a system of mass balance
+                    and
+                    therefore may not contain Better Cotton. Learn more at Better Cotton
+                    Find out more about our material goals.
+                    <br>
+                    READY FOR THE FUTURE GUIDELINES.
+                    <br>
+                    #GZZ56941-4
+                </p>
+            </div>
         </div>
     </div>
 
