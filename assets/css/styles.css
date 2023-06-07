@@ -41,8 +41,13 @@ body img {
 .first-navigation .first-navigation_search input {
     height: 54px;
     width: 90%;
+    padding-left:1rem;
     border: 0;
     border-left: 1px solid #ddd;
+}
+
+.first-navigation .first-navigation_search input::placeholder {
+    font-size: .9rem;
 }
 
 
@@ -193,4 +198,8 @@ footer #about_us ul li,
 footer #information ul li {
     display: block;
     margin-bottom: 5px;
+}
+
+.navbar.navbar-expand-lg.bg-body-tertiary{
+    border-bottom:1px solid #ddd
 }
