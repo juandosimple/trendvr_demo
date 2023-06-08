@@ -63,12 +63,15 @@ body {
 
 /* MAIN STAGE VIDEO */
 .ui-main_stage {
+    display: flex;
     position: relative;
+    justify-content: center;
+    align-items: center;
 }
 
 .ui-main_stage .ui-main_stage-video_container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
     border-radius: 25px;
@@ -76,14 +79,19 @@ body {
     transition: opacity 0.5s ease-in-out;
     min-height: 85vh;
     position: relative;
+    width: 60%;
 }
 
 .ui-main_stage .ui-main_stage-video_container video {
     max-width: none;
-    width: 70%;
+    width: 90%;
     min-height: 960px;
     position: absolute;
-    right: -70px;
+    opacity:0
+}
+
+.ui-main_stage .ui-main_stage-video_container video:first-child {
+    opacity:1
 }
 
 .ui-main_stage .ui-main_stage-video_container.hide {
@@ -93,9 +101,7 @@ body {
 
 .ui-main_stage .ui-main_stage-spin {
     position: absolute;
-    left: 62%;
     bottom: 0;
-    z-index: 1;
     display: block;
     background: #252525;
     border-radius: 5px;
@@ -103,16 +109,17 @@ body {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    opacity:0;
+    opacity: 0;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+    z-index: 999;
 }
 
 .ui-main_stage .ui-main_stage-spin:hover {
-    transform: translateY(30px) scale(.99); 
+    transform: translateY(30px) scale(.99);
 }
 
 .fade-in {
@@ -128,7 +135,11 @@ body {
 
 /* SIDEBAR */
 .ui-sidebar {
-    position: relative;
+    position: absolute;
+    width: 25%;
+    right: 10%;
+    top: 0;
+    z-index: 100
 }
 
 .ui-sidebar .ui-sidebar-size_widget {
@@ -171,6 +182,7 @@ body {
     margin-bottom: 2rem;
     color: #3a3a3a;
     width: 100%;
+    background:#fff;
 }
 
 
@@ -273,6 +285,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 0;
+    flex-wrap: wrap;
 }
 
 .widget-choose_color ul li {
@@ -350,3 +363,48 @@ body {
 
 
 /* COLOR WIDGET */
+
+/* UI FIT MODAL */
+.ui-fit_modal {
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+    left: 12%;
+    width: 25%;
+    opacity:0;
+    z-index: 100;
+}
+
+.ui-fit_modal p:first-child {
+    text-align: center;
+}
+
+.ui-fit_modal p:last-child {
+    text-align: center;
+    font-size: .9rem;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+}
+
+.ui-fit_modal div {
+    display: flex;
+}
+
+.ui-fit_modal a {
+    text-decoration: none;
+    display: block;
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #3a3a3a;
+    font-weight: 500;
+}
+
+.ui-fit_modal div img {
+    max-width: 100%;
+}
+
+/* UI FIT MODAL */
