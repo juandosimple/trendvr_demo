@@ -134,52 +134,60 @@
         feather.replace();
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var link = document.getElementById("check-size-link");
-            var fitGuide = document.getElementById("fit-guide");
-            var videoPlayer = document.getElementById("videoPlayer");
-            var videoSource = document.getElementById("videoSource");
-            var originalVideoSource = videoSource.src;
-            var videoContainer = document.querySelector(".ui-main_stage-video_container");
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("check-size-link");
+  var fitGuide = document.getElementById("fit-guide");
+  var videoPlayer = document.getElementById("videoPlayer");
+  var videoSource = document.getElementById("videoSource");
+  var originalVideoSource = videoSource.src;
+  var videoContainer = document.querySelector(".ui-main_stage-video_container");
 
-            link.addEventListener("click", function (e) {
-                e.preventDefault();
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
 
-                if (fitGuide.classList.contains("show")) {
-                    fitGuide.classList.remove("show");
-                    // console.log("DONT SHOWWWWWW")
-                    link.textContent = "Check how it fits";
-                    anime({
-                        targets: '.ui-fit_guide',
-                        translateY: -100,
-                        duration: 2000,
-                        complete: function () {
-                            videoContainer.classList.add("fade-in");
-                            videoContainer.classList.remove("hide");
-                            setTimeout(function () {
-                                console.log("SHOW")
-                            }, 100);
-                        }
-                    });
-                } else {
-                    fitGuide.classList.add("show");
-                    // console.log("SHOWWWWWW")
-                    link.textContent = "Go back to normal";
-                    anime({
-                        targets: '.ui-fit_guide',
-                        translateY: 100,
-                        duration: 2000,
-                        complete: function () {
-                            videoContainer.classList.remove("fade-in");
-                            videoContainer.classList.add("hide");
-                            setTimeout(function () {
-                                console.log("DON'T SHOW")
-                            }, 100);
-                        }
-                    });
-                }
-            });
-        });
+    if (fitGuide.classList.contains("show")) {
+      fitGuide.classList.remove("show");
+      link.textContent = "Check how it fits";
+      anime({
+        targets: '.ui-fit_guide',
+        translateY: -100,
+        duration: 2000,
+      });
+
+      anime({
+        targets: '.ui-main_stage-video_container',
+        opacity: '0',
+        easing: 'easeInOutQuad',
+        duration: 2000,
+        complete: function () {
+          setTimeout(function () {
+            videoSource.src = "./assets/videos/render_sin_alpha_3_VP9.webm";
+            videoPlayer.load();
+          }, 2000); // Retraso de 100 ms antes de cambiar el origen del video
+        }
+      });
+    } else {
+      fitGuide.classList.add("show");
+      link.textContent = "Go back to normal";
+      anime({
+        targets: '.ui-fit_guide',
+        translateY: 100,
+        duration: 2000,
+      });
+      anime({
+        targets: '.ui-main_stage-video_container',
+        opacity: '1',
+        easing: 'easeInOutQuad',
+        duration: 2000,
+        complete: function () {
+          videoSource.src = originalVideoSource;
+          videoPlayer.load();
+        }
+      });
+    }
+  });
+});
+
 
 
 

@@ -1,5 +1,5 @@
 body {
-    background-color: #f7f2e4;
+    background-color: #e3d8cf;
     color: #252525;
 }
 
@@ -71,6 +71,7 @@ body {
 .ui-main_stage .ui-main_stage-video_container video {
     max-width: none;
     width: 80%;
+    min-height: 960px;
 }
 
 .ui-main_stage .ui-main_stage-video_container.hide {
