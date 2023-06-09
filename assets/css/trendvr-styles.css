@@ -84,8 +84,7 @@ body {
 
 .ui-main_stage .ui-main_stage-video_container video {
     max-width: none;
-    width: 90%;
-    min-height: 960px;
+    height: 100%;
     position: absolute;
     opacity:0
 }
@@ -255,7 +254,7 @@ body {
 
 /* RELATED WIDGET */
 .widget-related {
-    margin: 4rem 0;
+    margin-top: 5rem;
 }
 
 .widget-related h1 {

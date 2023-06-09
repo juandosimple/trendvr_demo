@@ -125,7 +125,7 @@
                     <div class="widget-choose_color">
                         <h5>Choose color</h5>
                         <ul class="choose_color-list">
-                            <li class="active" data-bs-toggle="tooltip" data-bs-title="White smoke"><a
+                            <li  data-bs-toggle="tooltip" data-bs-title="White smoke"><a
                                     href="#"><span></span></a></li>
                             <li class="color_no_stock" data-bs-toggle="tooltip" data-bs-title="Green grass, No stock"><a
                                     href="#"><span></span></a></li>
@@ -138,21 +138,21 @@
                         </ul>
                     </div>
                     <div class="widget-choose_size"><a href="#" id="check-size-link">Check how it fits</a></div>
-                    <!-- <div class="widget-choose_size"><a href="#" id="check-size-link">Spin for me!</a></div> -->
-
                 </div>
             </div>
         </div>
 
-        <div class="widget-related">
-            <h1>Looking for something different?</h1>
-            <div class="owl-carousel">
-                <div><img src="./assets/img/product-two_picture_1.webp"></div>
-                <div><img src="./assets/img/product-two_picture_2.webp"></div>
-                <div><img src="./assets/img/product-third_picture_1.webp"></div>
-                <div><img src="./assets/img/product-third_picture_2.webp"></div>
-                <div><img src="./assets/img/product-fourth_picture_1.webp"></div>
-                <div><img src="./assets/img/product-fourth_picture_2.webp"></div>
+        <div class="container widget-related">
+            <div class="row">
+                <h1>Looking for something different?</h1>
+                <div class="owl-carousel">
+                    <div><img src="./assets/img/product-two_picture_1.webp"></div>
+                    <div><img src="./assets/img/product-two_picture_2.webp"></div>
+                    <div><img src="./assets/img/product-third_picture_1.webp"></div>
+                    <div><img src="./assets/img/product-third_picture_2.webp"></div>
+                    <div><img src="./assets/img/product-fourth_picture_1.webp"></div>
+                    <div><img src="./assets/img/product-fourth_picture_2.webp"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -195,7 +195,6 @@
         });
     </script>
     <script>
-
         // Reemplazar los íconos con Feather Icons
         feather.replace();
     </script>
@@ -204,8 +203,47 @@
             var link = document.getElementById("check-size-link");
             var closeModalButton = document.getElementById("ui-close_modal");
             var fitGuide = document.getElementById("fit-guide");
-            var videoPlayer = document.getElementById("videoPlayer");
-            var videoContainer = document.querySelector(".ui-main_stage-video_container");
+            const sizeItems = document.querySelectorAll('.widget-size_item a');
+            const colorItems = document.querySelectorAll('.choose_color-list li');
+
+
+            // Iterar sobre cada elemento y agregar el controlador de evento clic
+            sizeItems.forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    // Verificar si el elemento no tiene la clase "no_stock"
+                    if (!this.parentNode.classList.contains('no_stock')) {
+                        // Remover la clase "active-size" de todos los elementos
+                        sizeItems.forEach(function (item) {
+                            item.classList.remove('active-size');
+                        });
+
+                        // Agregar la clase "active-size" al elemento clicado
+                        this.classList.add('active-size');
+                    }
+                });
+            });
+
+    // Iterar sobre cada elemento y agregar el controlador de evento clic
+    colorItems.forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Verificar si el elemento no tiene la clase "color_no_stock"
+            if (!this.classList.contains('color_no_stock')) {
+                // Remover la clase "active" de todos los elementos
+                colorItems.forEach(function(item) {
+                    item.classList.remove('active');
+                });
+
+                // Agregar la clase "active" al elemento clicado
+                this.classList.add('active');
+            }
+        });
+    });
+
+
             // Obtener el elemento del video
             var video_xsmall = document.getElementById("x-small_idle");
 
@@ -225,6 +263,7 @@
                     duration: 500,
                     complete: function () {
                         video_xsmall.play();
+
                         anime({
                             targets: video_small,
                             opacity: 0,
@@ -266,8 +305,6 @@
                 });
             });
 
-
-
             var tl = anime.timeline({
                 easing: 'easeOutExpo',
                 duration: 750
@@ -280,24 +317,19 @@
                     translateY: 100,
                     opacity: 0,
                     easing: 'easeInOutQuad',
-                    duration: 1000,
+                    duration: 500,
                 });
             });
-
-
 
             link.addEventListener("click", function (e) {
                 e.preventDefault();
 
                 if (fitGuide.classList.contains("show")) {
                     fitGuide.classList.remove("show");
-
-
-
                     // Create a timeline with default parameters
                     var tl = anime.timeline({
                         easing: 'easeInOutQuad',
-                        duration: 1000
+                        duration: 500
                     });
 
                     // Add children
@@ -320,7 +352,7 @@
                         targets: '#strain_idle',
                         opacity: '0',
                         easing: 'easeInOutQuad',
-                        duration: 1000,
+                        duration: 500,
                         complete: function () {
                             anime({
                                 targets: '#x-small_idle',
@@ -336,27 +368,27 @@
                     anime({
                         targets: '.ui-fit_guide',
                         translateY: 100,
-                        duration: 2000,
+                        duration: 500,
 
                     });
                     anime({
                         targets: '#x-small_idle',
                         opacity: '0',
                         easing: 'easeInOutQuad',
-                        duration: 1000,
+                        duration: 500,
                         complete: function () {
                             anime({
                                 targets: '#strain_idle',
                                 opacity: '1',
                                 easing: 'easeInOutQuad',
-                                duration: 1000,
+                                duration: 500,
                                 complete: function () {
                                     anime({
                                         targets: '.ui-fit_modal',
                                         translateY: -50,
                                         opacity: 1,
                                         easing: 'easeInOutQuad',
-                                        duration: 1000,
+                                        duration: 500,
                                     });
                                 }
                             });
@@ -365,12 +397,6 @@
                 }
             });
         });
-
-
-
-
-
-
     </script>
 </body>
 
