@@ -503,35 +503,6 @@
         });
     </script>
 
-    <script>
-        var videoContainer = document.querySelector('.ui-main_stage-video_container');
-var magnifier = document.querySelector('.magnifier');
-
-videoContainer.addEventListener('mousemove', function(event) {
-  var rect = videoContainer.getBoundingClientRect();
-  var mouseX = event.clientX - rect.left;
-  var mouseY = event.clientY - rect.top;
-
-  var magnifierX = mouseX - magnifier.offsetWidth / 2;
-  var magnifierY = mouseY - magnifier.offsetHeight / 2;
-
-  magnifier.style.left = magnifierX + 'px';
-  magnifier.style.top = magnifierY + 'px';
-
-  var zoomFactor = 2; // Ajusta el factor de zoom según tus necesidades
-  magnifier.style.backgroundImage = 'url(' + videoContainer.querySelector('.zoom-video').src + ')';
-  magnifier.style.backgroundPosition = -mouseX * zoomFactor + 'px ' + -mouseY * zoomFactor + 'px';
-});
-
-videoContainer.addEventListener('mouseenter', function() {
-  magnifier.style.display = 'block';
-});
-
-videoContainer.addEventListener('mouseleave', function() {
-  magnifier.style.display = 'none';
-});
-
-    </script>
 </body>
 
 </html>
