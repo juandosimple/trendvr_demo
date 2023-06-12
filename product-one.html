@@ -97,6 +97,9 @@
             align-items: center;
         }
 
+        #product-returns{
+            background: #fff;
+        }
         #product-returns,
         #product-images {
             border: 1px solid #ddd;
@@ -193,14 +196,14 @@
 
         .product-details_buy_buttons button:first-child {
             background: #000;
-            width: 60%;
+            width:50%;
         }
 
         .product-details_buy_buttons button:last-child {
             background: #fff;
             color: #3a3a3a;
             border: 1px solid;
-            width: 40%;
+            width: 50%;
             white-space: nowrap;
         }
 
@@ -268,6 +271,30 @@
             border-bottom: 4px solid #f69;
             padding-bottom: 1rem;
         }
+
+        @media only screen and (max-width: 600px) {
+            .product-details_send_warning {
+                margin-top: 5px;
+            }
+
+            .b-returns div:first-child {
+                display: none;
+            }
+
+            .b-returns div:last-child {
+                width: 100%;
+            }
+
+            .product-details_payment_methods p {
+                display: none;
+            }
+
+            .product-details_buy_buttons button:first-child,
+            .product-details_buy_buttons button:last-child {
+                width: 50%;
+            }
+
+        }
     </style>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
@@ -281,7 +308,7 @@
         </div>
         <div class="first-navigation">
             <div class="first-navigation_logo">
-                <img src="./assets/img/logo.png" alt="" style=" width: 120px; ">
+                <a href="./index.html"><img src="./assets/img/logo.png" alt="" style=" width: 120px; "></a>
             </div>
             <div class="first-navigation_gender_container">
                 <a href="#" class="first-navigation_womens">WOMENS</a>
@@ -333,7 +360,7 @@
     </div>
     <div class="container" style="padding-bottom:1rem;">
         <div class="row">
-            <div class="col-8" id="product-images">
+            <div class="col-md-8 col-sm-12" id="product-images">
                 <div>
                     <a href="./trend-vr.html" id="try-it-link"
                         style=" position: absolute; background: #ff7bbb; text-decoration: none; color: #fff; font-weight: bold; padding: 1rem; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; right: 5%; justify-content: center; bottom: 5%; box-shadow: 0 0 38px rgba(0,0,0,.3); "><span>Try
@@ -342,7 +369,7 @@
                     <img src="./assets/img/product-one_picture_2.webp" alt="">
                 </div>
             </div>
-            <div class="col-4" id="product-details">
+            <div class="col-md-4 col-sm-12" id="product-details">
                 <nav class="b-breadcrumbs">
                     <ol class="b-breadcrumbs-list" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                         <li class="b-breadcrumbs-item">
@@ -467,7 +494,7 @@
                     <p>Pay £3.00 in 4 installments every 2 weeks.<a href="#">More info.</a></p>
                 </div>
             </div>
-            <div class="col-6 b-product_section m-description" id="product-description">
+            <div class="col-md-6 col-sm-12 b-product_section m-description" id="product-description">
                 <h1><span>PRODUCT DETAILS</span></h1>
                 <p>
                     Introducing your new fave top from our latest collection of plus size tops. Chic, versatile, and the
@@ -499,7 +526,7 @@
                     #GZZ37733-2
                 </p>
             </div>
-            <div class="col-6 b-product_section" id="product-similar">
+            <div class="col-md-6 col-sm-12 b-product_section" id="product-similar">
                 <h1><span>COMPLETE THE LOOK</span></h1>
                 <div style=" display: flex; ">
                     <div style=" border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;">
@@ -535,7 +562,7 @@
 
     <footer class="container">
         <div class="row">
-            <div class="col-2" id="quick-links">
+            <div class="col-md-2 col-sm-12" id="quick-links">
                 <h2>QUICK LINKS</h2>
                 <ul>
                     <li><a href="#">Track My Order</a></li>
@@ -550,7 +577,7 @@
                     <option value="us">U.S. $</option>
                 </select>
             </div>
-            <div class="col-3" id="about_us">
+            <div class="col-md-3 col-sm-12" id="about_us">
                 <h2>ABOUT US & MORE</h2>
                 <ul>
                     <li><a href="#">About boohoo</a></li>
@@ -566,7 +593,7 @@
                     <li><a href="#">Become a Partner</a></li>
                 </ul>
             </div>
-            <div class="col-3" id="information">
+            <div class="col-md-3 col-sm-12" id="information">
                 <h2>INFORMATION</h2>
                 <ul>
                     <li><a href="#">Sustainability</a></li>
@@ -584,7 +611,7 @@
                     <li><a href="#">Sitemap</a></li>
                 </ul>
             </div>
-            <div class="col-3" id="subscribe">
+            <div class="col-md-3 col-sm-12" id="subscribe">
                 <h2>SUBSCRIBE! GET AN EXTRA 10% OFF & INSIDE INFO!*</h2>
                 <span style="font-size:.8rem">
                     *Extra 10% discount sent via email to new subscribers only. By subscribing, you agree to receive
@@ -603,14 +630,14 @@
     <script>
         feather.replace()
     </script>
-<script>
-    document.getElementById('try-it-link').addEventListener('click', function(event) {
-      event.preventDefault(); // Evita que el enlace cambie la URL
-  
-      // Carga el contenido de trend-vr.html en el div con id "product-images"
-      document.getElementById('product-images').innerHTML = '<object type="text/html" data="./trend-vr.html" style="width:100%; height:600px"></object>';
-    });
-  </script>
+    <script>
+        document.getElementById('try-it-link').addEventListener('click', function (event) {
+            event.preventDefault(); // Evita que el enlace cambie la URL
+
+            // Carga el contenido de trend-vr.html en el div con id "product-images"
+            document.getElementById('product-images').innerHTML = '<object type="text/html" data="./trend-vr.html" style="width:100%; height:600px"></object>';
+        });
+    </script>
 </body>
 
 </html>
