@@ -257,17 +257,17 @@ footer #information ul li {
     }
 
 
-    .hide_mobile {
-        display: none;
+    .show_on_mobile {
+        display: block;
     }
-    .hide_desktop{
-        display:block
+    .hide_on_mobile{
+        display:none;
     }
 }
-.hide_desktop{
-    display:none
-}
-.hide_mobile {
+.show_on_desktop {
     display: block;
+}
+.hide_on_desktop{
+    display:none;
 }
 /* RESPONSIVE */
