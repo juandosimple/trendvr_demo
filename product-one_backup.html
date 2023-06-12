@@ -111,7 +111,7 @@
         #product-images div {
             display: flex;
             overflow: hidden;
-            position: relative;
+            position:relative;
         }
 
         #product-similar h1,
@@ -335,9 +335,7 @@
         <div class="row">
             <div class="col-8" id="product-images">
                 <div>
-                    <a href="./trend-vr.html" id="try-it-link"
-                        style=" position: absolute; background: #ff7bbb; text-decoration: none; color: #fff; font-weight: bold; padding: 1rem; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; right: 5%; justify-content: center; bottom: 5%; box-shadow: 0 0 38px rgba(0,0,0,.3); "><span>Try
-                            it on your self</span></a>
+                    <a href="./trend-vr.html" style=" position: absolute; background: #ff7bbb; text-decoration: none; color: #fff; font-weight: bold; padding: 1rem; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; right: 5%; justify-content: center; bottom: 5%; box-shadow: 0 0 38px rgba(0,0,0,.3); "><span>Try it on your self</span></a>
                     <img src="./assets/img/product-one_picture_1.webp" alt="">
                     <img src="./assets/img/product-one_picture_2.webp" alt="">
                 </div>
@@ -603,14 +601,6 @@
     <script>
         feather.replace()
     </script>
-<script>
-    document.getElementById('try-it-link').addEventListener('click', function(event) {
-      event.preventDefault(); // Evita que el enlace cambie la URL
-  
-      // Carga el contenido de trend-vr.html en el div con id "product-images"
-      document.getElementById('product-images').innerHTML = '<object type="text/html" data="./trend-vr.html" style="width:100%; height:600px"></object>';
-    });
-  </script>
 </body>
 
 </html>
