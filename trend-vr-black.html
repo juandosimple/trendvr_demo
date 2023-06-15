@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="./assets/vendor/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="./assets/css/trendvr-styles.css">
     <style>
+        body{
+            background-color: #fff;
+        }
         video {
             max-width: 100%;
         }
@@ -113,11 +116,14 @@
                 stroke-dashoffset: 282.6;
             }
         }
+        .widget-choose_color ul li:nth-child(2) span{
+            background-color: black;
+        }
     </style>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
-<body>
+<body class="black-dress">
     <div>
         <div style="position: relative;padding-top: 3%;">
             <div class="ui-fit_guide" id="fit-guide">
@@ -141,7 +147,7 @@
                     </div>
                     <a href="#" id="ui-close_modal"><span>Close</span></a>
                 </div>
-                <a href="#" class="ui-main_stage-spin" onclick="takeForSpin(event)">
+                <a href="#" class="ui-main_stage-spin" onclick="changeVideo('slip-vid_1-dress check', event)">
                     <i data-feather="refresh-ccw"></i> <span>Take it for a spin</span>
                 </a>
                 <div class="ui-main_stage-video_container">
@@ -153,7 +159,7 @@
                             </svg>
                         </div>
                         <video id="video" autoplay loop muted playsinline class="zoom-video"
-                            src="./assets/videos/base_idle.webm"></video>
+                            src="./assets/videos/base_idle_white.webm"></video>
                     </div>
                 </div>
             </div>
@@ -168,12 +174,12 @@
                     <h5>Choose your size</h5>
                     <div class="widget-size_item_container">
                         <div class="widget-size_item">
-                            <a href="#" data-size="x-small" class="size-option" onclick="selectSize(this, event)">
+                            <a href="#" data-size="x-small" onclick="changeVideo('slip-vid_1-idle', event)">
                                 <span>XS</span>
                             </a>
                         </div>
-                        <div class="widget-size_item">
-                            <a href="#" data-size="small" class="size-option" onclick="selectSize(this, event)">
+                        <div class="widget-size_item no_stock">
+                            <a href="#" data-size="small">
                                 <span>S</span>
                             </a>
                         </div>
@@ -191,27 +197,12 @@
                     <div class="widget-choose_color">
                         <h5>Choose color</h5>
                         <ul class="choose_color-list">
-                            <li data-bs-toggle="tooltip" data-color="white" data-bs-title="White smoke"><a href="#"
-                                    onclick="selectColor(this, event)"><span></span></a>
-                            </li>
-                            <li class="color-option color_no_stock" data-color="green" data-bs-toggle="tooltip"
-                                data-bs-title="Green grass, No stock"><a href="#"><span></span></a></li>
-                            <li class="color-option" data-color="red"><a href="#" data-bs-toggle="tooltip"
-                                    data-bs-title="Intense red" onclick="selectColor(this, event)"><span></span></a>
-                            </li>
-                            <li class="color-option" data-color="blue"><a href="#" data-bs-toggle="tooltip"
-                                    data-bs-title="Blue sky" onclick="selectColor(this, event)"><span></span></a></li>
-                            <li class="color_no_stock color-option" data-color="purple" data-bs-toggle="tooltip"
-                                data-bs-title="Purple, No stock"><a href="#"><span></span></a></li>
-                            <li class="color-option" data-color="yellow"><a href="#" data-bs-toggle="tooltip"
-                                    data-bs-title="Yellow egg" onclick="selectColor(this, event)"><span></span></a></li>
-                            <li class="color-option" data-color="pink"><a href="#" data-bs-toggle="tooltip"
-                                    data-bs-title="Pink Salmon" onclick="selectColor(this, event)"><span></span></a>
-                            </li>
+                            <li class="color_no_stock" data-bs-toggle="tooltip" data-color="white" data-bs-title="White smoke, No stock"><a href="#"><span></span></a></li>
+                            <li class="active" data-bs-toggle="tooltip" data-color="black" data-bs-title="Black"><a href="#"><span></span></a></li>
                         </ul>
                     </div>
-                    <div class="widget-choose_size"><a href="#" id="check-size-link" onclick="toggleView(event)">Check
-                            fit</a></div>
+                    <!--<div class="widget-choose_size widget-choose_size_disabled"><a href="#" id="check-size-link">Check
+                            how it fits</a></div>-->
                 </div>
             </div>
         </div>
@@ -239,26 +230,19 @@
         crossorigin="anonymous"></script>
     <script src="./assets/vendor/animejs/anime.min.js"></script>
     <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-        var video = document.getElementById('video');
-        var preloader = document.getElementById('preloader');
-        var link = document.getElementById("check-size-link");
-        var isNormalView = true;
-
-        feather.replace();
-
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         anime({
             targets: '.ui-sidebar-size_widget',
             translateY: 50,
-            duration: 500,
+            duration: 200,
             easing: 'spring(1, 80, 10, 0)',
             complete: function () {
                 anime({
                     targets: '.ui-main_stage-spin',
                     translateY: 0,
                     opacity: 1,
-                    duration: 500,
+                    duration: 200,
                     translateY: function (el, i) {
                         return 20 + (-25 * i);
                     },
@@ -266,148 +250,38 @@
                 });
             }
         });
+        feather.replace();
+
+        var video = document.getElementById('video');
+        var preloader = document.getElementById('preloader');
 
         video.addEventListener('canplaythrough', function () {
             preloader.style.display = 'none';
             video.play();
         });
 
-        function toggleView(event) {
+        function changeVideo(source, event) {
             event.preventDefault();
-            if (isNormalView) {
-                link.textContent = "Check Fit";
-                video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
-            } else {
-                link.textContent = "Normal View";
-                video.src = "./assets/videos/idle_strain_map.webm";
-            }
             anime({
                 targets: "#video",
                 opacity: 0,
-                duration: 500,
+                duration: 200,
                 easing: 'linear',
                 complete: function () {
                     anime({
                         targets: "#video",
                         opacity: 1,
-                        duration: 500,
-                        easing: 'linear',
-                        complete: function () {
-                            isNormalView = !isNormalView;
-                            video.load();
-                            video.play();
-                        }
+                        duration: 200,
+                        easing: 'linear'
+                        
                     });
+                    video.src = "./assets/videos/" + source + ".webm";
+                    video.load();
                 }
             });
+            preloader.style.display = 'flex';
+            video.pause();
         }
-
-
-
-        function selectSize(size, event) {
-            event.preventDefault();
-
-            if (isNormalView) {
-                link.textContent = "Check Fit";
-                video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
-            } else {
-                link.textContent = "Normal View";
-                video.src = "./assets/videos/idle_strain_map.webm";
-            }
-
-            const sizeOptions = document.querySelectorAll('.size-option');
-            sizeOptions.forEach(option => {
-                option.classList.remove('active-size');
-            });
-            size.classList.add('active-size');
-
-            var videoSource = '';
-
-            var selectedSize = size.getAttribute('data-size');
-
-            if (selectedSize === 'x-small') {
-                videoSource = './assets/videos/tshirt-x-small-idle.webm';
-            } else if (selectedSize === 'small') {
-                videoSource = './assets/videos/tshirt-small-idle.webm';
-            }
-
-            video.src = videoSource;
-            video.load();
-            video.play();
-        }
-
-
-        function selectColor(color, event) {
-            event.preventDefault();
-
-            if (isNormalView) {
-                link.textContent = "Check Fit";
-                video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
-            } else {
-                link.textContent = "Normal View";
-                video.src = "./assets/videos/idle_strain_map.webm";
-            }
-
-            const colorOptions = document.getElementsByClassName('color-option');
-            Array.from(colorOptions).forEach(option => {
-                option.classList.remove('active');
-            });
-            color.parentNode.classList.add('active');
-
-            var videoSource = '';
-
-            var selectedColor = color.parentNode.getAttribute('data-color');
-
-            switch (selectedColor) {
-                case 'red':
-                    videoSource = './assets/videos/tshirt-x-small-idle_red.webm';
-                    break;
-                case 'blue':
-                    videoSource = './assets/videos/tshirt-x-small-idle_celeste.webm';
-                    break;
-                case 'yellow':
-                    videoSource = './assets/videos/tshirt-x-small-idle_yellow.webm';
-                    break;
-                case 'pink':
-                    videoSource = './assets/videos/tshirt-x-small-idle_pink.webm';
-                    break;
-                case 'white':
-                    videoSource = './assets/videos/tshirt-x-small-idle_white.webm';
-                    break;
-                default:
-                    // Manejar caso por defecto si no coincide ningún color
-                    break;
-            }
-
-            video.src = videoSource;
-            video.load();
-            video.play();
-        }
-
-        function takeForSpin(event) {
-            event.preventDefault();
-
-            anime({
-                targets: "#video",
-                opacity: 0,
-                duration: 100,
-                easing: 'easeOutBounce',
-                complete: function () {
-                    anime({
-                        targets: "#video",
-                        opacity: 1,
-                        duration: 500,
-                        easing: 'easeInCirc',
-                        complete: function () {
-                            video.src = "./assets/videos/" + "tshirt-x-small-fit_check.webm";
-                            video.load();
-                            video.play();
-                        }
-                    });
-                }
-            });
-        }
-
 
     </script>
 

@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trend VR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/vendor/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/vendor/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/trendvr-styles.css">
+    <style>
+        video {
+            max-width: 100%;
+        }
+
+        body {
+            transition: background-color 0.5s ease;
+        }
+
+        /* #preloader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: 9999;
+        } */
+
+        .logo-header {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-header span {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: .8rem;
+        }
+
+        .logo-header img {
+            width:120px
+        }
+    </style>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <div>
+        <div style="position: relative;padding-top: 3%;">
+            <div class="ui-fit_guide" id="fit-guide">
+                <a href="#" data-bs-toggle="tooltip"
+                    data-bs-title="The greener the color around you is, the more relaxed your body will feel."><span
+                        class="fit_guide-indicator">Loose</span></a>
+                <div class="fit_guide-tube"></div>
+                <a href="#" data-bs-toggle="tooltip"
+                    data-bs-title="The red areas indicate that it will be too tight for you."><span
+                        class="fit_guide-indicator">Tight</span></a>
+            </div>
+
+
+            <div class="ui-main_stage">
+                <div class="ui-fit_modal" id="fit-modal">
+                    <p>It appears that this size may not be the best fit for you. Maybe you can try another size</p>
+                    <p>Also you can try another outfit</p>
+                    <div class="ui-fit_modal-related">
+                        <div><a href="#"><img src="./assets/img/related_modal_1.jpg" alt=""> </a> </div>
+                        <div><a href="#"><img src="./assets/img/related_modal_2.jpg" alt=""> </a> </div>
+                    </div>
+                    <a href="#" id="ui-close_modal"><span>Close</span></a>
+                </div>
+                <a href="#" class="ui-main_stage-spin">
+                    <i data-feather="refresh-ccw"></i> <span>Take it for a spin</span>
+                </a>
+                <div class="ui-main_stage-video_container">
+                    <video id="base_idle" autoplay loop muted playsinline class="zoom-video">
+                        <source class="video-source" src="./assets/videos/base_idle_cortado_crudo_VP9.webm"
+                            type="video/webm">
+                    </video>
+                    <div class="magnifier"></div>
+
+                    <video id="strain_idle" autoplay autoplay loop muted playsinline>
+                        <source class="video-source" src="./assets/videos/idle_strain_map_cortado_crudo_VP9.webm"
+                            type="video/webm">
+                    </video>
+                    <video id="x-small_idle" autoplay loop muted playsinline>
+                        <source class="video-source" src="./assets/videos/t-shirt-x-small-idle_cortado_crudo_VP9.webm"
+                            type="video/webm">
+                    </video>
+                    <video id="x-small-fit_check" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-fit_check_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="small_idle" autoplay loop muted playsinline>
+                        <source class="video-source" src="./assets/videos/t-shirt-small-idle_cortado_crudo_VP9.webm"
+                            type="video/webm">
+                    </video>
+                    <video id="x-small_spin" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-fit_check_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="small_spin" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-small-fit_check_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="small-fit_check" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-small-fit_check_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="x-small_white" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-idle_white_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="x-small_blue" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-idle_celeste_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="x-small_pink" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-idle_pink_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="x-small_yellow" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-idle_yellow_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                    <video id="x-small_red" autoplay loop muted playsinline>
+                        <source class="video-source"
+                            src="./assets/videos/t-shirt-x-small-idle_red_cortado_crudo_VP9.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+
+            <div class="ui-sidebar">
+                <div class="ui-sidebar-size_widget">
+                    <div class="logo-header">
+                        <span>Powered by</span>
+                        <img alt="Trend VR Logo"
+                            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNS40LjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAzMjYuNiAzNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzI2LjYgMzU7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMyNjI1MjU7fQ0KPC9zdHlsZT4NCjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMCw1LjkgMTQuMyw1LjkgMTQuMywzMy44IDIxLjMsMzMuOCAyMS4zLDUuOSAzNS42LDUuOSAzNS42LDAgMCwwICIvPg0KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxNzAuNSwyNC42IDE0NS40LDAgMTM4LjQsMCAxMzguNCwzMy44IDE0NS40LDMzLjggMTQ1LjQsOS4zIDE3MC41LDMzLjggMTc3LjUsMzMuOCAxNzcuNSwwIDE3MC41LDAgDQoJIi8+DQo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjI2My41LDI3LjcgMjUyLDAgMjQ0LjMsMCAyNTkuMiwzMy44IDI2Ny45LDMzLjggMjgyLjYsMCAyNzUuMSwwICIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTcwLjEsMTUuOGgtNy4zaC04LjdWNmg4LjdoNy4zYzMuNSwwLDYsMS41LDYsNC42Qzc2LjEsMTMuOSw3My42LDE1LjgsNzAuMSwxNS44IE04MywxMC4yDQoJQzgzLDMuMSw3Ny45LDAsNzAuMSwwSDQ3LjJ2My40aC0wLjF2MjIuOWgwLjF2Ny40aDYuOXYtNy40di01aDEyLjhjNS41LDAsOC41LDEsOC41LDQuOWwwLDcuNmg2Ljl2LThjMC00LjgtMi41LTYuMi03LjgtNi43DQoJQzc5LjQsMTguMyw4MywxNS45LDgzLDEwLjIiLz4NCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zMTMuNywxNS44aC01LjVoLTEwLjRWNmgxMC40aDUuNWMzLjUsMCw2LDEuNSw2LDQuNkMzMTkuNiwxMy45LDMxNy4yLDE1LjgsMzEzLjcsMTUuOCBNMzE4LjEsMTkuMQ0KCWM0LjgtMC44LDguNS0zLjEsOC41LTguOGMwLTcuMS01LjItMTAuMi0xMy0xMC4yaC0yMi45djAuOVY2djkuOHY3LjR2MTAuNWg2LjlWMjMuM3YtMmgxMi44YzUuNSwwLDguNSwxLDguNSw0LjlsMCw3LjZoNi45di04DQoJQzMyNS45LDIwLjksMzIzLjQsMTkuNSwzMTguMSwxOS4xIi8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjA3LjIsMjcuN0gxOTVWNmgxMi4yYzEwLDAsMTIuOSw1LDEyLjksMTAuOEMyMjAuMSwyMi41LDIxNy4yLDI3LjcsMjA3LjIsMjcuNyBNMjA3LjQsMEgxODh2MzMuOGgxOS4zDQoJYzE0LjUsMCwxOS44LTgsMTkuOC0xN0MyMjcuMSw3LjgsMjIyLjYsMCwyMDcuNCwwIi8+DQo8cmVjdCB4PSI5NC4zIiBjbGFzcz0ic3QwIiB3aWR0aD0iMzMiIGhlaWdodD0iNS44Ii8+DQo8cmVjdCB4PSI5NC4zIiB5PSIyOS4yIiBjbGFzcz0ic3QwIiB3aWR0aD0iMzMiIGhlaWdodD0iNS44Ii8+DQo8cmVjdCB4PSI5NC4zIiB5PSIxNC42IiBjbGFzcz0ic3QwIiB3aWR0aD0iMzMiIGhlaWdodD0iNS44Ii8+DQo8L3N2Zz4NCg==" />
+                    </div>
+                    <h5>Choose your size</h5>
+                    <div class="widget-size_item_container">
+                        <div class="widget-size_item">
+                            <a href="#" data-size="x-small">
+                                <span>XS</span>
+                            </a>
+                        </div>
+                        <div class="widget-size_item">
+                            <a href="#" data-size="small">
+                                <span>S</span>
+                            </a>
+                        </div>
+                        <div class="widget-size_item no_stock">
+                            <a href="#" data-size="medium" data-bs-toggle="tooltip" data-bs-title="No stock">
+                                <span>M</span>
+                            </a>
+                        </div>
+                        <div class="widget-size_item no_stock">
+                            <a href="#" data-size="large" data-bs-toggle="tooltip" data-bs-title="No stock">
+                                <span>L</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-choose_color">
+                        <h5>Choose color</h5>
+                        <ul class="choose_color-list">
+                            <li data-bs-toggle="tooltip" data-color="white" data-bs-title="White smoke"><a
+                                    href="#"><span></span></a></li>
+                            <li class="color_no_stock" data-color="green" data-bs-toggle="tooltip"
+                                data-bs-title="Green grass, No stock"><a href="#"><span></span></a></li>
+                            <li data-color="red"><a href="#" data-bs-toggle="tooltip"
+                                    data-bs-title="Intense red"><span></span></a></li>
+                            <li data-color="blue"><a href="#" data-bs-toggle="tooltip"
+                                    data-bs-title="Blue sky"><span></span></a></li>
+                            <li class="color_no_stock" data-color="purple" data-bs-toggle="tooltip"
+                                data-bs-title="Purple, No stock"><a href="#"><span></span></a></li>
+                            <li data-color="yellow"><a href="#" data-bs-toggle="tooltip"
+                                    data-bs-title="Yellow egg"><span></span></a></li>
+                            <li data-color="pink"><a href="#" data-bs-toggle="tooltip"
+                                    data-bs-title="Pink Salmon"><span></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-choose_size"><a href="#" id="check-size-link">Check how it fits</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container widget-related" style="display:none">
+            <div class="row">
+                <h1 style="margin-bottom:2rem;">Looking for something different?</h1>
+                <div class="owl-carousel">
+                    <div><img src="./assets/img/product-two_picture_1.webp"></div>
+                    <div><img src="./assets/img/product-two_picture_2.webp"></div>
+                    <div><img src="./assets/img/product-third_picture_1.webp"></div>
+                    <div><img src="./assets/img/product-third_picture_2.webp"></div>
+                    <div><img src="./assets/img/product-fourth_picture_1.webp"></div>
+                    <div><img src="./assets/img/product-fourth_picture_2.webp"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="display:none">
+        <div class="logo-footer" style="text-align: center;margin-top:3rem;padding-bottom:5rem;">
+            <img alt="Trend VR Logo"
+                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNS40LjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAzMjYuNiAzNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzI2LjYgMzU7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMyNjI1MjU7fQ0KPC9zdHlsZT4NCjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMCw1LjkgMTQuMyw1LjkgMTQuMywzMy44IDIxLjMsMzMuOCAyMS4zLDUuOSAzNS42LDUuOSAzNS42LDAgMCwwICIvPg0KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxNzAuNSwyNC42IDE0NS40LDAgMTM4LjQsMCAxMzguNCwzMy44IDE0NS40LDMzLjggMTQ1LjQsOS4zIDE3MC41LDMzLjggMTc3LjUsMzMuOCAxNzcuNSwwIDE3MC41LDAgDQoJIi8+DQo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjI2My41LDI3LjcgMjUyLDAgMjQ0LjMsMCAyNTkuMiwzMy44IDI2Ny45LDMzLjggMjgyLjYsMCAyNzUuMSwwICIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTcwLjEsMTUuOGgtNy4zaC04LjdWNmg4LjdoNy4zYzMuNSwwLDYsMS41LDYsNC42Qzc2LjEsMTMuOSw3My42LDE1LjgsNzAuMSwxNS44IE04MywxMC4yDQoJQzgzLDMuMSw3Ny45LDAsNzAuMSwwSDQ3LjJ2My40aC0wLjF2MjIuOWgwLjF2Ny40aDYuOXYtNy40di01aDEyLjhjNS41LDAsOC41LDEsOC41LDQuOWwwLDcuNmg2Ljl2LThjMC00LjgtMi41LTYuMi03LjgtNi43DQoJQzc5LjQsMTguMyw4MywxNS45LDgzLDEwLjIiLz4NCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zMTMuNywxNS44aC01LjVoLTEwLjRWNmgxMC40aDUuNWMzLjUsMCw2LDEuNSw2LDQuNkMzMTkuNiwxMy45LDMxNy4yLDE1LjgsMzEzLjcsMTUuOCBNMzE4LjEsMTkuMQ0KCWM0LjgtMC44LDguNS0zLjEsOC41LTguOGMwLTcuMS01LjItMTAuMi0xMy0xMC4yaC0yMi45djAuOVY2djkuOHY3LjR2MTAuNWg2LjlWMjMuM3YtMmgxMi44YzUuNSwwLDguNSwxLDguNSw0LjlsMCw3LjZoNi45di04DQoJQzMyNS45LDIwLjksMzIzLjQsMTkuNSwzMTguMSwxOS4xIi8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjA3LjIsMjcuN0gxOTVWNmgxMi4yYzEwLDAsMTIuOSw1LDEyLjksMTAuOEMyMjAuMSwyMi41LDIxNy4yLDI3LjcsMjA3LjIsMjcuNyBNMjA3LjQsMEgxODh2MzMuOGgxOS4zDQoJYzE0LjUsMCwxOS44LTgsMTkuOC0xN0MyMjcuMSw3LjgsMjIyLjYsMCwyMDcuNCwwIi8+DQo8cmVjdCB4PSI5NC4zIiBjbGFzcz0ic3QwIiB3aWR0aD0iMzMiIGhlaWdodD0iNS44Ii8+DQo8cmVjdCB4PSI5NC4zIiB5PSIyOS4yIiBjbGFzcz0ic3QwIiB3aWR0aD0iMzMiIGhlaWdodD0iNS44Ii8+DQo8cmVjdCB4PSI5NC4zIiB5PSIxNC42IiBjbGFzcz0ic3QwIiB3aWR0aD0iMzMiIGhlaWdodD0iNS44Ii8+DQo8L3N2Zz4NCg=="
+                style=" width: 170px; " />
+            <ul style="margin:2rem 0;padding:0;display:flex;justify-content: center;list-style:none;">
+                <li style="margin-right:20px;">
+                    <a href="#" style="text-decoration:none;color:#3a3a3a;font-size:1.1rem;font-weight: 500;">About</a>
+                </li>
+                <li style="margin-right:20px;">
+                    <a href="#" style="text-decoration:none;color:#3a3a3a;font-size:1.1rem;font-weight: 500;">More about
+                        us</a>
+                </li>
+                <li style="margin-right:20px;">
+                    <a href="#" style="text-decoration:none;color:#3a3a3a;font-size:1.1rem;font-weight: 500;">Contact
+                        us</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="./assets/vendor/owl-carousel/owl.carousel.min.js"></script>
+    <script src="./assets/vendor/animejs/anime.min.js"></script>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        anime({
+            targets: '.ui-sidebar-size_widget',
+            translateY: 50,
+            duration: 200,
+            easing: 'spring(1, 80, 10, 0)',
+            complete: function () {
+                anime({
+                    targets: '.ui-main_stage-spin',
+                    translateY: 0,
+                    opacity: 1,
+                    duration: 200,
+                    translateY: function (el, i) {
+                        return 20 + (-25 * i);
+                    },
+                    easing: 'spring(1, 50, 10, 0)'
+                });
+            }
+        });
+
+    </script>
+    <script>
+        // Reemplazar los íconos con Feather Icons
+        feather.replace();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let counter = 0
+            var link = document.getElementById("check-size-link");
+            var closeModalButton = document.getElementById("ui-close_modal");
+            var fitGuide = document.getElementById("fit-guide");
+            const sizeItems = document.querySelectorAll('.widget-size_item a');
+            const colorItems = document.querySelectorAll('.choose_color-list li');
+            // Iterar sobre cada elemento y agregar el controlador de evento clic
+            sizeItems.forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    // Verificar si el elemento no tiene la clase "no_stock"
+                    if (!this.parentNode.classList.contains('no_stock')) {
+                        // Remover la clase "active-size" de todos los elementos
+                        sizeItems.forEach(function (item) {
+                            item.classList.remove('active-size');
+                        });
+
+                        // Agregar la clase "active-size" al elemento clicado
+                        this.classList.add('active-size');
+                    }
+                });
+            });
+
+
+            // Get the <a> element by its class
+            var spinLink = document.querySelector('.ui-main_stage-spin');
+
+            // Add a click event to the element
+            spinLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default behavior of the link
+
+                // Actions to perform when the element is clicked
+                anime({
+                    targets: '#x-small_spin',
+                    opacity: 1,
+                    zIndex: counter++,
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                    complete: function () {
+                        counter++;
+                    }
+                });
+
+            });
+
+            colorItems.forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    if (!this.classList.contains('color_no_stock')) {
+                        colorItems.forEach(function (item) {
+                            item.classList.remove('active');
+                        });
+
+                        this.classList.add('active');
+                        const selectedColor = this.getAttribute('data-color');
+                        let selectedVideo = `#x-small_${selectedColor}`;
+                        console.log(selectedVideo)
+                        anime({
+                            targets: selectedVideo,
+                            opacity: 1,
+                            zIndex: counter++,
+                            easing: 'easeInOutQuad',
+                            duration: 500,
+                            complete: function () {
+                                counter++;
+                            }
+                        });
+                    }
+                });
+            });
+
+
+            // Obtener el elemento del video
+            var video_xsmall = document.getElementById("x-small_idle");
+
+            // Obtener el elemento de la opción XS en el control
+            var xsOption = document.querySelector(".widget-size_item a[data-size='x-small']");
+
+            // Agregar un evento de clic a la opción XS
+            xsOption.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // Cambiar la opacidad del video utilizando la biblioteca anime.js
+                anime({
+                    targets: video_xsmall,
+                    opacity: 1,
+                    zIndex: counter++,
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                    complete: function () {
+                        video_xsmall.play();
+                        counter++;
+                        anime({
+                            targets: video_small,
+                            opacity: 0,
+                            zIndex: 88,
+                            easing: 'easeInOutQuad',
+                            duration: 500,
+                        });
+                    }
+                });
+            });
+
+
+            // Obtener el elemento del video
+            var video_small = document.getElementById("small_idle");
+            // Obtener el elemento de la opción S en el control
+            var sOption = document.querySelector(".widget-size_item a[data-size='small']");
+
+            // Agregar un evento de clic a la opción S
+            sOption.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // Cambiar la opacidad del video utilizando la biblioteca anime.js
+                anime({
+                    targets: video_small,
+                    opacity: 1,
+                    zIndex: counter++,
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                    complete: function () {
+                        small_idle.play();
+                        counter++;
+                        anime({
+                            targets: video_xsmall,
+                            opacity: 0,
+                            zIndex: 87,
+                            easing: 'easeInOutQuad',
+                            duration: 500,
+                        });
+                    }
+                });
+            });
+
+            var tl = anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 750
+            });
+
+            closeModalButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                anime({
+                    targets: '.ui-fit_modal',
+                    translateY: 100,
+                    opacity: 0,
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
+            });
+
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                if (fitGuide.classList.contains("show")) {
+                    fitGuide.classList.remove("show");
+                    // Create a timeline with default parameters
+                    var tl = anime.timeline({
+                        easing: 'easeInOutQuad',
+                        duration: 500
+                    });
+
+                    // Add children
+                    tl
+                        .add({
+                            targets: '.ui-fit_guide',
+                            translateY: -200,
+                        })
+                        .add({
+                            targets: '.ui-fit_modal',
+                            translateY: 100,
+                            opacity: 0,
+                        })
+
+
+
+                    link.textContent = "Check how it fits";
+
+                    anime({
+                        targets: '#strain_idle',
+                        opacity: '0',
+                        easing: 'easeInOutQuad',
+                        duration: 500,
+                        zIndex: counter++,
+                        complete: function () {
+                            counter++,
+                                anime({
+                                    targets: '#x-small_idle',
+                                    opacity: '1',
+                                    zIndex: counter++,
+                                    easing: 'easeInOutQuad',
+                                    duration: 500,
+                                });
+                        }
+                    });
+                } else {
+                    fitGuide.classList.add("show");
+                    link.textContent = "Normal view";
+                    anime({
+                        targets: '.ui-fit_guide',
+                        translateY: 50,
+                        duration: 500,
+
+                    });
+                    anime({
+                        targets: '#x-small_idle',
+                        opacity: '0',
+                        easing: 'easeInOutQuad',
+                        duration: 500,
+                        complete: function () {
+                            anime({
+                                targets: '#strain_idle',
+                                opacity: '1',
+                                easing: 'easeInOutQuad',
+                                duration: 500,
+                                complete: function () {
+                                    anime({
+                                        targets: '.ui-fit_modal',
+                                        translateY: 30,
+                                        opacity: 1,
+                                        easing: 'easeInOutQuad',
+                                        duration: 500,
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

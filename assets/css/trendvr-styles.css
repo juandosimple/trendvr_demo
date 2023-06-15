@@ -1,6 +1,7 @@
 body {
     background-color: #e3d8cf;
     color: #252525;
+    user-select: none;
 }
 
 /* HEADER */
@@ -79,7 +80,8 @@ body {
     transition: opacity 0.5s ease-in-out;
     min-height: 85vh;
     position: relative;
-    width: 60%;
+    /* width: 60%; */
+    width: 100%;
 }
 
 .ui-main_stage .ui-main_stage-video_container video {
@@ -344,7 +346,16 @@ body {
 }
 
 .widget-choose_color ul li.color_no_stock span {
-    opacity: .2;
+    opacity: .1;
+}
+
+.black-dress .widget-choose_color ul li.color_no_stock span {
+    opacity: .6;
+}
+
+.widget-choose_color ul li.color_no_stock a {
+    pointer-events: none;
+    
 }
 
 .widget-choose_color ul li.color_no_stock span:after {
@@ -424,7 +435,11 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-
+.widget-choose_size_disabled{
+    pointer-events: none;
+    user-select: none;
+    opacity: .3;
+}   
 /* UI FIT MODAL */
 
 
