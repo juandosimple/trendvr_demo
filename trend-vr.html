@@ -191,7 +191,8 @@
                     <div class="widget-choose_color">
                         <h5>Choose color</h5>
                         <ul class="choose_color-list">
-                            <li data-bs-toggle="tooltip" data-color="white" data-bs-title="White smoke"><a href="#"
+                            <li class="color-option" data-bs-toggle="tooltip" data-color="white"
+                                data-bs-title="White smoke"><a href="#"
                                     onclick="selectColor(this, event)"><span></span></a>
                             </li>
                             <li class="color-option color_no_stock" data-color="green" data-bs-toggle="tooltip"
@@ -268,25 +269,58 @@
         });
 
         video.addEventListener('canplaythrough', function () {
-            preloader.style.display = 'none';
             video.play();
         });
 
         function toggleView(event) {
             event.preventDefault();
-            if (isNormalView) {
-                link.textContent = "Check Fit";
-                video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
-            } else {
-                link.textContent = "Normal View";
-                video.src = "./assets/videos/idle_strain_map.webm";
-            }
+            preloader.style.visibility = 'visible'; // Ocultar el elemento 'preloader'
+
             anime({
                 targets: "#video",
                 opacity: 0,
                 duration: 500,
                 easing: 'linear',
                 complete: function () {
+                    if (isNormalView) {
+                        link.textContent = "Normal View";
+                        video.src = "./assets/videos/idle_strain_map.webm";
+                        var tl = anime.timeline({
+                            easing: 'easeInExpo',
+                            duration: 500
+                        });
+
+                        // Add children
+                        tl
+                            .add({
+                                targets: '.ui-fit_guide',
+                                translateY: 50,
+                                opacity: 1,
+                            })
+                            .add({
+                                targets: '.ui-fit_modal',
+                                translateY: 20,
+                                opacity: 1,
+                            })
+                    } else {
+                        link.textContent = "Check Fit";
+                        video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
+                        anime({
+                            targets: ".ui-fit_guide",
+                            opacity: 0,
+                            duration: 300,
+                            easing: 'easeInOutSine',
+                            complete: function () {
+                                anime({
+                                    targets: ".ui-fit_modal",
+                                    opacity: 0,
+                                    duration: 300,
+                                    easing: 'easeInOutSine'
+
+                                });
+                            }
+                        });
+                    }
                     anime({
                         targets: "#video",
                         opacity: 1,
@@ -294,98 +328,131 @@
                         easing: 'linear',
                         complete: function () {
                             isNormalView = !isNormalView;
-                            video.load();
-                            video.play();
+                            setTimeout(function () {
+                                preloader.style.visibility = 'hidden'; // Ocultar el elemento 'preloader'
+
+                                video.load();
+                                video.play();
+                            }, 100); // Ajusta la demora según sea necesario
                         }
                     });
                 }
             });
         }
 
-
+        var currentSize = ''; // Declarar la variable currentSize fuera de la función
 
         function selectSize(size, event) {
             event.preventDefault();
+            preloader.style.visibility = 'visible'; // Ocultar el elemento 'preloader'
 
-            if (isNormalView) {
-                link.textContent = "Check Fit";
-                video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
-            } else {
-                link.textContent = "Normal View";
-                video.src = "./assets/videos/idle_strain_map.webm";
+            const newSize = size.getAttribute('data-size');
+            if (newSize === currentSize) {
+                return; // No realizar cambios si se selecciona el mismo tamaño nuevamente
             }
+            currentSize = newSize;
 
-            const sizeOptions = document.querySelectorAll('.size-option');
-            sizeOptions.forEach(option => {
-                option.classList.remove('active-size');
+            anime({
+                targets: "#video",
+                opacity: 0,
+                duration: 500,
+                easing: 'linear',
+                complete: function () {
+                    var videoSource = '';
+
+                    if (currentSize === 'x-small') {
+                        videoSource = './assets/videos/tshirt-x-small-idle.webm';
+                    } else if (currentSize === 'small') {
+                        videoSource = './assets/videos/tshirt-small-idle.webm';
+                    }
+
+                    video.src = videoSource;
+                    preloader.style.visibility = 'hidden'; // Ocultar el elemento 'preloader'
+                    video.load();
+                    video.play();
+
+                    anime({
+                        targets: "#video",
+                        opacity: 1,
+                        duration: 500,
+                        easing: 'linear'
+                    });
+                }
             });
-            size.classList.add('active-size');
-
-            var videoSource = '';
-
-            var selectedSize = size.getAttribute('data-size');
-
-            if (selectedSize === 'x-small') {
-                videoSource = './assets/videos/tshirt-x-small-idle.webm';
-            } else if (selectedSize === 'small') {
-                videoSource = './assets/videos/tshirt-small-idle.webm';
-            }
-
-            video.src = videoSource;
-            video.load();
-            video.play();
         }
-
 
         function selectColor(color, event) {
             event.preventDefault();
+            preloader.style.visibility = 'visible'; // Ocultar el elemento 'preloader'
 
-            if (isNormalView) {
-                link.textContent = "Check Fit";
-                video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
-            } else {
-                link.textContent = "Normal View";
-                video.src = "./assets/videos/idle_strain_map.webm";
-            }
+            anime({
+                targets: "#video",
+                opacity: 0,
+                duration: 500,
+                easing: 'linear',
+                complete: function () {
+                    if (isNormalView) {
+                        link.textContent = "Check Fit";
+                        video.src = "./assets/videos/tshirt-x-small-idle_white.webm";
+                    } else {
+                        link.textContent = "Normal View";
+                        video.src = "./assets/videos/idle_strain_map.webm";
+                    }
 
-            const colorOptions = document.getElementsByClassName('color-option');
-            Array.from(colorOptions).forEach(option => {
-                option.classList.remove('active');
+                    const colorOptions = document.getElementsByClassName('color-option');
+                    Array.from(colorOptions).forEach(option => {
+                        option.classList.remove('active');
+                    });
+                    color.parentNode.classList.add('active');
+
+                    var videoSource = '';
+
+                    var selectedColor = color.parentNode.getAttribute('data-color');
+
+                    switch (selectedColor) {
+                        case 'red':
+                            videoSource = './assets/videos/tshirt-x-small-idle_red.webm';
+                            break;
+                        case 'blue':
+                            videoSource = './assets/videos/tshirt-x-small-idle_celeste.webm';
+                            break;
+                        case 'yellow':
+                            videoSource = './assets/videos/tshirt-x-small-idle_yellow.webm';
+                            break;
+                        case 'pink':
+                            videoSource = './assets/videos/tshirt-x-small-idle_pink.webm';
+                            break;
+                        case 'white':
+                            videoSource = './assets/videos/tshirt-x-small-idle_white.webm';
+                            break;
+                        default:
+                            // Manejar caso por defecto si no coincide ningún color
+                            break;
+                    }
+
+                    video.onloadedmetadata = function () {
+                        anime({
+                            targets: "#video",
+                            opacity: 1,
+                            duration: 500,
+                            easing: 'linear',
+                            complete: function () {
+                                preloader.style.visibility = 'hidden'; // Ocultar el elemento 'preloader'
+                                video.play();
+                            }
+                        });
+                    };
+
+                    video.src = videoSource;
+                    video.load();
+                }
             });
-            color.parentNode.classList.add('active');
-
-            var videoSource = '';
-
-            var selectedColor = color.parentNode.getAttribute('data-color');
-
-            switch (selectedColor) {
-                case 'red':
-                    videoSource = './assets/videos/tshirt-x-small-idle_red.webm';
-                    break;
-                case 'blue':
-                    videoSource = './assets/videos/tshirt-x-small-idle_celeste.webm';
-                    break;
-                case 'yellow':
-                    videoSource = './assets/videos/tshirt-x-small-idle_yellow.webm';
-                    break;
-                case 'pink':
-                    videoSource = './assets/videos/tshirt-x-small-idle_pink.webm';
-                    break;
-                case 'white':
-                    videoSource = './assets/videos/tshirt-x-small-idle_white.webm';
-                    break;
-                default:
-                    // Manejar caso por defecto si no coincide ningún color
-                    break;
-            }
-
-            video.src = videoSource;
-            video.load();
-            video.play();
         }
+
 
         function takeForSpin(event) {
             event.preventDefault();
+            preloader.style.visibility = 'visible'; // Ocultar el elemento 'preloader'
 
             anime({
                 targets: "#video",
@@ -393,22 +460,22 @@
                 duration: 100,
                 easing: 'easeOutBounce',
                 complete: function () {
+                    video.src = "./assets/videos/" + "tshirt-x-small-fit_check.webm";
+                    video.load();
+
                     anime({
                         targets: "#video",
                         opacity: 1,
                         duration: 500,
                         easing: 'easeInCirc',
                         complete: function () {
-                            video.src = "./assets/videos/" + "tshirt-x-small-fit_check.webm";
-                            video.load();
                             video.play();
+                            preloader.style.visibility = 'hidden'; // Ocultar el elemento 'preloader'
                         }
                     });
                 }
             });
         }
-
-
     </script>
 
 </body>
