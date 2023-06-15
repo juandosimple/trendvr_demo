@@ -22,16 +22,16 @@
 <body>
     <div class="navigation-container">
         <div class="b-promotion_header-wrapper">
-            <a href="https://www.boohoo.com/womens/promo/flash-sale-2?topstrip_flash-sale-2">
+            <a href="./product-one.html">
                 <span class="b-promotion_header">SUMMER INCOMING... UP TO 70% OFF ALMOST EVERYTHING!*</span>
             </a>
         </div>
         <div class="first-navigation">
             <div class="first-navigation_logo">
-                <img src="./assets/img/logo.png" alt="" style=" width: 120px; ">
+                <a href="./index.html"><img src="./assets/img/logo.png" alt="" style=" width: 120px; "></a>
             </div>
             <div class="first-navigation_gender_container">
-                <a href="#" class="first-navigation_womens">WOMENS</a>
+                <a href="#" class="nav-link">WOMENS</a>
                 <a href="#" class="first-navigation_mens">MENS</a>
             </div>
             <div class="first-navigation_search">
@@ -53,6 +53,7 @@
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
+                <a href="./index.html" class="hide_on_desktop show_on_mobile"><img src="./assets/img/logo.png" alt="" style="width: 80px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -60,7 +61,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
+                        <form class="nav-form hide_on_desktop show_on_mobile">
+                            <input type="text" placeholder="What are you looking for?"/>
+                            <button type="submit"><i data-feather="search"></button></i>
+                        </form>
                         <a class="nav-link active" aria-current="page" href="./product-one.html">SALE</a>
+                        <a href="./product-one.html" class="nav-link">WOMENS</a>
+                        <a href="./product-one.html" class="nav-link">MENS</a>
                         <a class="nav-link" href="./product-one.html">NEW IN</a>
                         <a class="nav-link" href="./product-one.html">ALL CLOTHING</a>
                         <a class="nav-link" href="./product-one.html">DRESSES</a>
@@ -72,27 +79,37 @@
                         <a class="nav-link" href="./product-one.html">BEAUTY</a>
                         <a class="nav-link" href="./product-one.html">BRANDS</a>
                         <a class="nav-link" href="./product-one.html">OUTLET</a>
+                        <div class="nav-profile hide_on_desktop show_on_mobile">
+                            <a href="./product-one.html" class="nav-link"><i data-feather="user"></i></a>
+                            <a href="./product-one.html" class="nav-link"><i data-feather="heart"></i></a>
+                            <a href="./product-one.html" class="nav-link"><i data-feather="shopping-bag"></i></a>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </nav>
     </div>
     <div>
-        <img src="./assets/img/promo_home.gif" alt="" style=" width: 100%; ">
-        <img src="./assets/img/first-banner.webp" alt="" style=" width: 100%; ">
+        <a href="./product-one.html">
+            <img src="./assets/img/promo_home.gif" class="hide_on_mobile show_on_desktop"  alt="" style=" width: 100%; ">
+            <img src="./assets/img/promo_home_mobile.gif"  class="hide_on_desktop show_on_mobile" alt="" style=" width: 100%; ">
+        </a>
+        <img src="./assets/img/first-banner.webp" class="hide_on_mobile show_on_desktop" alt="" style=" width: 100%; ">
+        <img src="./assets/img/first-banner_mobile.webp" class="hide_on_desktop show_on_mobile" alt="" style=" width: 100%; ">
     </div>
     <div class="container" style="padding-top:1rem;padding-bottom:1rem;">
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3 col-sm-12">
                 <a href="./product-one.html"><img src="./assets/img/first-category.webp" alt=""></a>
             </div>
-            <div class="col-3">
+            <div class="col-md-3 col-sm-12">
                 <a href="./product-one.html"><img src="./assets/img/second-category.webp" alt=""></a>
             </div>
-            <div class="col-3">
+            <div class="col-md-3 col-sm-12">
                 <a href="./product-one.html"><img src="./assets/img/third-category.webp" alt=""></a>
             </div>
-            <div class="col-3">
+            <div class="col-md-3 col-sm-12">
                 <a href="./product-one.html"><img src="./assets/img/fourth-category.webp" alt=""></a>
             </div>
         </div>
@@ -112,7 +129,7 @@
 
     <footer class="container">
         <div class="row">
-            <div class="col-2" id="quick-links">
+            <div class="col-md-2 col-sm-12" id="quick-links">
                 <h2>QUICK LINKS</h2>
                 <ul>
                     <li><a href="#">Track My Order</a></li>
@@ -127,7 +144,7 @@
                     <option value="us">U.S. $</option>
                 </select>
             </div>
-            <div class="col-3" id="about_us">
+            <div class="col-md-3 col-sm-12" id="about_us">
                 <h2>ABOUT US & MORE</h2>
                 <ul>
                     <li><a href="#">About boohoo</a></li>
@@ -143,7 +160,7 @@
                     <li><a href="#">Become a Partner</a></li>
                 </ul>
             </div>
-            <div class="col-3" id="information">
+            <div class="col-md-3 col-sm-12" id="information">
                 <h2>INFORMATION</h2>
                 <ul>
                     <li><a href="#">Sustainability</a></li>
@@ -161,7 +178,7 @@
                     <li><a href="#">Sitemap</a></li>
                 </ul>
             </div>
-            <div class="col-3" id="subscribe">
+            <div class="col-md-3 col-sm-12" id="subscribe">
                 <h2>SUBSCRIBE! GET AN EXTRA 10% OFF & INSIDE INFO!*</h2>
                 <span style="font-size:.8rem">
                     *Extra 10% discount sent via email to new subscribers only. By subscribing, you agree to receive

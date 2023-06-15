@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hooboo - Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <style>
+        .b-breadcrumbs {
+            margin-left: 1rem;
+        }
+
+        .b-breadcrumbs .b-breadcrumbs-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+        }
+
+        .b-breadcrumbs .b-breadcrumbs-list li span {
+            margin: 0 2px;
+            font-weight: 500;
+            letter-spacing: .2px;
+        }
+
+        .b-breadcrumbs .b-breadcrumbs-list li a {
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 1.2;
+            color: #3a3a3a;
+        }
+
+        .b-returns {
+            display: flex;
+        }
+
+        .b-returns div {
+            width: 50%;
+            padding: 15px;
+            position: relative;
+        }
+
+        .b-returns div:last-child {
+            border-left: 1px solid #ddd;
+        }
+
+        .b-returns div a {
+            text-decoration: none;
+            color: #3a3a3a;
+            text-transform: uppercase;
+            margin-left: 15px;
+        }
+
+        .b-returns div:last-child:before {
+            background: #f69;
+            content: "";
+            display: block;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+        }
+
+        #product-similar,
+        #product-description {
+            border-bottom: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            padding: 3rem 0 2rem;
+        }
+
+        #product-similar {
+            border-right: 1px solid #ddd;
+        }
+
+        #product-similar img {
+            margin-bottom: 1rem;
+        }
+
+        #product-similar h1 {
+            margin-bottom: 0;
+        }
+
+        #product-similar h2 {
+            margin: 0;
+            padding: 0;
+            padding-left: 1rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        #product-returns,
+        #product-images {
+            border: 1px solid #ddd;
+        }
+
+        #product-images {
+            padding: 0;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        #product-images div {
+            display: flex;
+            overflow: hidden;
+            position:relative;
+        }
+
+        #product-similar h1,
+        #product-description h1 {
+            font-size: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        #product-similar h1 span,
+        #product-similar h2 span,
+        #product-description h1 span {
+            padding-left: 1rem;
+        }
+
+        #product-similar h1:before,
+        #product-similar h2:before,
+        #product-description h1:before {
+            background: #f69;
+            content: "";
+            display: block;
+            height: 30px;
+            position: absolute;
+            width: 3px;
+        }
+
+        #product-description p {
+            font-size: .9rem;
+            padding: .5rem 1.8rem;
+        }
+
+        #product-description ul {
+            font-size: .8rem;
+            list-style: none;
+            margin: 0;
+            padding: .5rem 1.8rem;
+            margin-bottom: 0.5rem
+        }
+
+        #product-details {
+            border-right: 1px solid #ddd;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .product-details_send_warning {
+            margin: 10px 0;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+
+        .product-details_send_warning svg {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .product-details_send_warning span {
+            font-size: .8rem;
+        }
+
+        .product-details_buy_buttons {
+            display: flex;
+            margin: 0.5rem;
+        }
+
+        .product-details_buy_buttons button {
+            color: #fff;
+            border: 0;
+            padding: .5rem 1rem;
+            text-transform: uppercase;
+        }
+
+        .product-details_buy_buttons button:first-child {
+            background: #000;
+            width: 60%;
+        }
+
+        .product-details_buy_buttons button:last-child {
+            background: #fff;
+            color: #3a3a3a;
+            border: 1px solid;
+            width: 40%;
+            white-space: nowrap;
+        }
+
+        .product-details_title_price ul {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .product-details_title_price ul,
+        .product-details_type ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .product-details_title_price {
+            margin: 1rem;
+        }
+
+        .product-details_type {
+            margin: 2rem 1rem;
+        }
+
+        .product-details_type ul {
+            display: flex;
+        }
+
+        .product-details_type ul li {
+            margin-right: 5px;
+        }
+
+        .product-details_payment_methods {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-bottom: 0;
+            justify-content: space-between;
+        }
+
+        .product-details_payment_methods,
+        .product-details_payment_methods div {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-details_payment_methods p {
+            margin: 0;
+            padding: 0;
+            font-size: .8rem;
+        }
+
+        .product-details_payment_methods p a {
+            color: #3a3a3a
+        }
+
+        .product-similar_actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .product-similar_actions button {
+            border: 0;
+            background: transparent;
+            font-weight: bold;
+            border-bottom: 4px solid #f69;
+            padding-bottom: 1rem;
+        }
+    </style>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <div class="navigation-container">
+        <div class="b-promotion_header-wrapper">
+            <a href="https://www.boohoo.com/womens/promo/flash-sale-2?topstrip_flash-sale-2">
+                <span class="b-promotion_header">SUMMER INCOMING... UP TO 70% OFF ALMOST EVERYTHING!*</span>
+            </a>
+        </div>
+        <div class="first-navigation">
+            <div class="first-navigation_logo">
+                <img src="./assets/img/logo.png" alt="" style=" width: 120px; ">
+            </div>
+            <div class="first-navigation_gender_container">
+                <a href="#" class="first-navigation_womens">WOMENS</a>
+                <a href="#" class="first-navigation_mens">MENS</a>
+            </div>
+            <div class="first-navigation_search">
+                <input type="text" placeholder="What are you looking for?" /><button type="submit"><i
+                        data-feather="search"></button></i>
+            </div>
+            <div class="first-navigation_settings">
+                <ul>
+                    <li>
+                        <a href=""><i data-feather="user"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i data-feather="heart"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i data-feather="shopping-bag"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="./product-one.html">SALE</a>
+                        <a class="nav-link" href="./product-one.html">NEW IN</a>
+                        <a class="nav-link" href="./product-one.html">ALL CLOTHING</a>
+                        <a class="nav-link" href="./product-one.html">DRESSES</a>
+                        <a class="nav-link" href="./product-one.html">TOPS</a>
+                        <a class="nav-link" href="./product-one.html">SUMMER</a>
+                        <a class="nav-link" href="./product-one.html">OCCASION WEAR</a>
+                        <a class="nav-link" href="./product-one.html">SHOES & ACCESSORIES</a>
+                        <a class="nav-link" href="./product-one.html">SHOP BY FIT</a>
+                        <a class="nav-link" href="./product-one.html">BEAUTY</a>
+                        <a class="nav-link" href="./product-one.html">BRANDS</a>
+                        <a class="nav-link" href="./product-one.html">OUTLET</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="padding-bottom:1rem;">
+        <div class="row">
+            <div class="col-8" id="product-images">
+                <div>
+                    <a href="./trend-vr.html" style=" position: absolute; background: #ff7bbb; text-decoration: none; color: #fff; font-weight: bold; padding: 1rem; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; right: 5%; justify-content: center; bottom: 5%; box-shadow: 0 0 38px rgba(0,0,0,.3); "><span>Try it on your self</span></a>
+                    <img src="./assets/img/product-one_picture_1.webp" alt="">
+                    <img src="./assets/img/product-one_picture_2.webp" alt="">
+                </div>
+            </div>
+            <div class="col-4" id="product-details">
+                <nav class="b-breadcrumbs">
+                    <ol class="b-breadcrumbs-list" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                        <li class="b-breadcrumbs-item">
+                            <a class="b-breadcrumbs-link" href="https://www.boohoo.com/" data-tau="breadcrumbs_link"
+                                itemprop="item">
+                                <span itemprop="name">Home</span>
+                            </a>
+                        </li>
+                        <li class="b-breadcrumbs-item">
+                            <span class="b-breadcrumbs-icon">/</span>
+                            <a class="b-breadcrumbs-link" href="https://www.boohoo.com/womens"
+                                data-tau="breadcrumbs_link" itemprop="item">
+                                <span itemprop="name">WOMENS</span>
+                            </a>
+                        </li>
+                        <li class="b-breadcrumbs-item">
+                            <span class="b-breadcrumbs-icon">/</span>
+                            <a class="b-breadcrumbs-link" href="https://www.boohoo.com/womens/collections"
+                                data-tau="breadcrumbs_link" itemprop="item">
+                                <span itemprop="name">Collections</span>
+                            </a>
+                        </li>
+                        <li class="b-breadcrumbs-item">
+                            <span class="b-breadcrumbs-icon">/</span>
+                            <a class="b-breadcrumbs-link" aria-current="page"
+                                href="https://www.boohoo.com/pantone-boxy-zip-through-hoodie/GZZ56941-4.html"
+                                data-tau="breadcrumbs_link" itemprop="item">
+                                <span itemprop="name">Product</span>
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="product-details_title_price">
+                    <ul>
+                        <li>BEIGE PLUS SUPER OVERSIZED CREW NECK BASIC COTTON T-SHIRT</li>
+                        <li>£12.00</li>
+                    </ul>
+                </div>
+                <div class="product-details_type">
+                    <ul>
+                        <li>COLOUR: STONE</li>
+                        <li>|</li>
+                        <li>SIZE: SELECT</li>
+                    </ul>
+                </div>
+                <div class="product-details_buy_buttons">
+                    <button>Add to cart</button>
+                    <button>Save for later</button>
+                </div>
+                <div class="product-details_send_warning">
+                    <i data-feather="truck" width="16" height="16"></i><span>ORDER BY 11PM FOR NEXT DAY DELIVERY!</span>
+                </div>
+            </div>
+
+            <div class="col-12" id="product-returns">
+                <div class="b-returns">
+                    <div></div>
+                    <div><a href="#">Delivery & Returns</a></div>
+                </div>
+            </div>
+            <div class="product-details_payment_methods">
+                <div>
+                    <svg role="img" class="i-icon i-icon-klarna" height="15" width="70"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.305 12" focusable="false">
+                        <path fill="#0a0b09"
+                            d="M63.594 38.5a1.52 1.52 0 0 0-1.51 1.548 1.545 1.545 0 0 0 1.51 1.548 1.52 1.52 0 0 0 1.51-1.548 1.474 1.474 0 0 0-1.51-1.548zM58.6 37.3a2.134 2.134 0 0 0-2.206-2.09 2.158 2.158 0 0 0-2.206 2.09 2.21 2.21 0 0 0 4.413 0zm.039-4.065h2.4v8.129h-2.4v-.5a4.3 4.3 0 1 1 0-7.123v-.5zm-19.355 1.049v-1.045h-2.478v8.129h2.477v-3.794c0-1.277 1.394-1.974 2.323-1.974h.039v-2.361a2.963 2.963 0 0 0-2.361 1.045zM33.09 37.3a2.134 2.134 0 0 0-2.206-2.09 2.158 2.158 0 0 0-2.206 2.09 2.21 2.21 0 0 0 4.413 0zm0-4.065h2.4v8.129h-2.4v-.5a4.3 4.3 0 1 1 0-7.123v-.5zm14.594-.232a2.908 2.908 0 0 0-2.477 1.123v-.89h-2.4v8.129h2.439V37.11a1.716 1.716 0 0 1 1.819-1.858 1.593 1.593 0 0 1 1.665 1.819v4.3h2.4v-5.19a3.231 3.231 0 0 0-3.445-3.174zM22.91 41.368h2.516V29.6H22.91zm-11.11 0h2.671V29.6H11.8v11.768zM21.168 29.6a9.362 9.362 0 0 1-2.748 6.7l3.716 5.071h-3.29l-4.026-5.535 1.045-.774a6.747 6.747 0 0 0 2.71-5.458z"
+                            transform="translate(-16.214 -38) translate(4.414 8.4)"></path>
+                    </svg>
+                    <p>Pay later in 30 days or £4.00 in 3 monthly installments. <a href="#">More info.</a></p>
+                </div>
+                <div>
+                    <svg role="img" class="i-icon i-icon-paypal" height="16" width="78"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.155 12.15" focusable="false">
+                        <g transform="translate(-922.51 -838.953)">
+                            <g transform="translate(936.583 839.104)">
+                                <path id="Path_3432"
+                                    d="M29 59.4h-3.5a.527.527 0 0 0-.5.419l-1.41 8.99a.3.3 0 0 0 .229.343h1.714a.527.527 0 0 0 .5-.419l.381-2.438a.5.5 0 0 1 .5-.419h1.1c2.324 0 3.657-1.1 4-3.352a2.683 2.683 0 0 0-.457-2.248A3.332 3.332 0 0 0 29 59.4zm.381 3.314c-.19 1.257-1.143 1.257-2.1 1.257h-.5l.381-2.362a.29.29 0 0 1 .3-.229h.238c.648 0 1.219 0 1.524.343a1.159 1.159 0 0 1 .154.991zm10.1-.076H37.8a.332.332 0 0 0-.3.229l-.076.457-.114-.152a2.392 2.392 0 0 0-1.981-.686 3.839 3.839 0 0 0-3.733 3.39 3.3 3.3 0 0 0 .61 2.59 2.607 2.607 0 0 0 2.133.838 3.249 3.249 0 0 0 2.324-.952l-.076.457a.3.3 0 0 0 .229.343h1.562a.527.527 0 0 0 .5-.419l.914-5.752a.3.3 0 0 0-.229-.343zm-2.362 3.276a1.864 1.864 0 0 1-1.9 1.6 1.437 1.437 0 0 1-1.143-.457 1.394 1.394 0 0 1-.267-1.181 1.853 1.853 0 0 1 1.867-1.6 1.307 1.307 0 0 1 1.1.457 1.216 1.216 0 0 1 .336 1.181zm11.314-3.276H46.75a.526.526 0 0 0-.419.229L44.007 66.3l-.99-3.314a.534.534 0 0 0-.457-.343h-1.677a.3.3 0 0 0-.3.3v.076l1.867 5.448-1.752 2.476a.31.31 0 0 0 .076.419.229.229 0 0 0 .152.038H42.6a.612.612 0 0 0 .419-.19l5.6-8.114a.31.31 0 0 0-.076-.419.384.384 0 0 0-.114-.038z"
+                                    fill="#253b80" transform="translate(-23.581 -59.4)"></path>
+                                <path id="Path_3433"
+                                    d="M94.7 59.4h-3.5a.527.527 0 0 0-.5.419l-1.41 8.99a.3.3 0 0 0 .229.343h1.829a.361.361 0 0 0 .343-.3l.419-2.552a.5.5 0 0 1 .5-.419h1.1c2.324 0 3.657-1.1 4-3.352a2.683 2.683 0 0 0-.457-2.248A3.332 3.332 0 0 0 94.7 59.4zm.381 3.314c-.19 1.257-1.143 1.257-2.1 1.257h-.531l.381-2.362a.29.29 0 0 1 .3-.229h.229c.648 0 1.219 0 1.524.343a1.041 1.041 0 0 1 .194.991zm10.1-.076H103.5a.332.332 0 0 0-.3.229l-.076.457-.124-.153a2.392 2.392 0 0 0-1.981-.686 3.839 3.839 0 0 0-3.733 3.39 3.3 3.3 0 0 0 .61 2.59 2.607 2.607 0 0 0 2.133.838 3.249 3.249 0 0 0 2.324-.952l-.076.457a.3.3 0 0 0 .229.343h1.562a.527.527 0 0 0 .5-.419l.914-5.752a.3.3 0 0 0-.229-.343zm-2.362 3.276a1.864 1.864 0 0 1-1.9 1.6 1.437 1.437 0 0 1-1.143-.457 1.394 1.394 0 0 1-.267-1.181 1.853 1.853 0 0 1 1.867-1.6 1.307 1.307 0 0 1 1.1.457 1.216 1.216 0 0 1 .336 1.181zm4.343-6.248l-1.448 9.143a.3.3 0 0 0 .229.343h1.486a.527.527 0 0 0 .5-.419l1.41-8.99a.3.3 0 0 0-.229-.343h-1.676a.286.286 0 0 0-.279.267z"
+                                    fill="#179bd7" transform="translate(-64.252 -59.4)"></path>
+                            </g>
+                            <g transform="translate(922.51 838.953)">
+                                <path id="Path_3434"
+                                    d="M70.724 27.864l.223-1.308H68.3l1.5-9.756c0-.064.064-.1.128-.1h3.7a3.255 3.255 0 0 1 2.52.766 1.512 1.512 0 0 1 .415.766 2.9 2.9 0 0 1 0 1.053v.287l.223.128a2.047 2.047 0 0 1 .415.319 1.425 1.425 0 0 1 .351.766 2.727 2.727 0 0 1-.064 1.116 4.613 4.613 0 0 1-.447 1.276 2.5 2.5 0 0 1-.734.8 3.119 3.119 0 0 1-.989.447 4.713 4.713 0 0 1-1.212.128h-.287a.881.881 0 0 0-.861.766v.1l-.351 2.329-.032.1c0 .032 0 .032-.032.064h-.033c0-.047-1.786-.047-1.786-.047z"
+                                    fill="#253b80" transform="translate(-67.845 -16.282)"></path>
+                                <path id="Path_3435"
+                                    d="M81.311 25c0 .064-.032.161-.032.225-.482 2.541-2.187 3.409-4.342 3.409h-1.093a.52.52 0 0 0-.515.45l-.579 3.57-.161 1.029a.288.288 0 0 0 .225.322h1.994a.451.451 0 0 0 .45-.386l.032-.1.354-2.348.032-.129a.451.451 0 0 1 .45-.386h.289c1.9 0 3.377-.772 3.795-2.991a2.5 2.5 0 0 0-.386-2.251 1.1 1.1 0 0 0-.513-.414z"
+                                    fill="#179bd7" transform="translate(-72.186 -22.005)"></path>
+                                <path id="Path_3436" fill="#222d65"
+                                    d="M82.367 23.961a2.564 2.564 0 0 0-.482-.1 4.868 4.868 0 0 0-.965-.064h-2.927a.451.451 0 0 0-.45.386l-.611 3.956-.032.129a.52.52 0 0 1 .515-.45h1.093c2.155 0 3.859-.868 4.342-3.409 0-.064.032-.161.032-.225a1.616 1.616 0 0 0-.418-.161c-.032-.03-.064-.03-.097-.062z"
+                                    transform="translate(-73.757 -21.131)"></path>
+                                <path id="Path_3437"
+                                    d="M70.684 18.461a.447.447 0 0 1 .446-.383h2.9a8.486 8.486 0 0 1 .957.064 3.709 3.709 0 0 1 .574.128c.159.064.287.1.415.159a2.324 2.324 0 0 0-.51-2.136 3.664 3.664 0 0 0-2.836-.893h-3.668a.516.516 0 0 0-.51.446l-1.563 9.82a.3.3 0 0 0 .255.351H69.5l.574-3.667c.004.032.61-3.889.61-3.889z"
+                                    fill="#253b80" transform="translate(-66.885 -15.4)"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <p>Pay in 3 interest-free payments on eligible purchases. <a href="#">More info.</a></p>
+                </div>
+                <div>
+                    <svg role="img" class="i-icon i-icon-clearpay" height="15" width="75"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79 15">
+                        <path
+                            d="m77.8 7.1-2.3 1.3-2.3 1.4c-1.5.9-3.5-.2-3.5-2v-.4c0-.3-.4-.5-.7-.4l-2.1 1.2-2.1 1.3c-.3.1-.3.6 0 .8l2.1 1.2 2.1 1.2c.3.2.7 0 .7-.4v-.7c0-.4.4-.6.7-.4l1.1.6c.1.1.2.3.2.4v.3c0 1.8-1.9 2.9-3.5 2l-2.3-1.3-2.3-1.3c-1.5-.9-1.5-3.2 0-4.1l2.3-1.3 2.3-1.3c1.6-.9 3.5.2 3.5 2v.4c0 .3.4.5.7.4l2.1-1.3 2.2-1.2c.3-.2.3-.6 0-.8l-2.2-1.2-2.1-1.2c-.3-.2-.7 0-.7.4v.7c0 .3-.4.5-.7.4l-1-.6c-.2-.1-.3-.3-.3-.4v-.3c0-1.8 2-2.9 3.5-2.1l2.3 1.4 2.3 1.3c1.6.9 1.6 3.1 0 4z">
+                        </path>
+                        <path d="m62.7 3.5-5.4 11.2h-2.2l2-4.2-3.1-7h2.3l2 4.7 2.2-4.7z"></path>
+                        <path fill-rule="evenodd"
+                            d="M35.9 3.5h2v1.1c.6-.8 1.4-1.2 2.5-1.2 2.1 0 3.8 1.8 3.8 4.1s-1.7 4.1-3.9 4.1c-1 0-1.8-.4-2.4-1.1v4.2h-2zm6.3 3.9c0-1.2-1-2.2-2.1-2.2-1.2 0-2.2.9-2.2 2.2 0 1.3 1 2.3 2.2 2.3 1.1 0 2.1-1 2.1-2.3z">
+                        </path>
+                        <path fill-rule="evenodd"
+                            d="M51.2 11.5v-1.1c-.6.7-1.4 1.2-2.5 1.2-2.1 0-3.8-1.8-3.8-4.1s1.7-4.1 3.9-4.1c1 0 1.8.5 2.4 1.1v-1h2v8zm0-4c0-1.3-1-2.3-2.2-2.3-1.2 0-2.1 1-2.1 2.3 0 1.3.9 2.3 2.1 2.3 1.2 0 2.2-1 2.2-2.3z">
+                        </path>
+                        <path
+                            d="M32.4 4.3s.5-.9 1.7-.9c.6 0 .9.2.9.2v2s-.7-.5-1.4-.4c-.7.1-1.1.7-1.1 1.6v4.7h-2v-8h1.9v.8zM8.1 8.5c-.4 1.8-2 3.1-4 3.1C1.8 11.6 0 9.8 0 7.5s1.8-4.1 4.2-4.1c1.9 0 3.5 1.3 3.9 3.1h-2C5.7 5.7 5 5.3 4.2 5.3 3 5.3 2 6.2 2 7.5c0 1.3 1 2.3 2.2 2.3.8 0 1.5-.5 1.9-1.3zM9.1.3H11v11.2H9.1z">
+                        </path>
+                        <path fill-rule="evenodd"
+                            d="M14 8c.2 1.2 1 1.9 2.1 1.9.8 0 1.5-.4 1.8-1.1H20c-.5 1.7-2 2.8-4 2.8-2.4 0-4-1.7-4-4.1 0-2.3 1.7-4.1 4.1-4.1 2.3 0 4 1.8 4 4.1V8zm3.9-1.2c-.1-1-.9-1.6-1.9-1.6-1 0-1.8.6-2 1.6zM27.2 10.4c-.6.8-1.4 1.2-2.5 1.2-2.1 0-3.8-1.7-3.8-4.1 0-2.3 1.7-4.1 3.9-4.1 1 0 1.8.5 2.4 1.2v-1h2v7.9h-2zm0-3c0-1.3-1-2.2-2.1-2.2-1.2 0-2.2.9-2.2 2.2 0 1.3 1 2.3 2.2 2.3 1.1 0 2.1-.9 2.1-2.3z">
+                        </path>
+                    </svg>
+                    <p>Pay £3.00 in 4 installments every 2 weeks.<a href="#">More info.</a></p>
+                </div>
+            </div>
+            <div class="col-6 b-product_section m-description" id="product-description">
+                <h1><span>PRODUCT DETAILS</span></h1>
+                <p>
+                    Introducing your new fave top from our latest collection of plus size tops. Chic, versatile, and the
+                    perfect addition to your new-season wardrobe, this style is everything you’ve been scrolling
+                    for.<br>
+                    Pair with your fave jeans and chunky trainers for off-duty days or go all-out with wide leg trousers
+                    and statement heels. Want more? From wardrobe essentials like plus size shirts, to stand-out styles
+                    from our plus size party tops edit, find your everyday 'fits right here.
+                </p>
+                <ul>
+                    <li>Style: T-Shirt</li>
+                    <li>Fabric: Bci Cotton</li>
+                    <li>Neckline: Crew</li>
+                </ul>
+                <p>
+                    This garment is READY FOR THE FUTURE.<br><br>
+
+                    The Boohoo Group are members of Better Cotton. By choosing our cotton products, you’re supporting
+                    Boohoo
+                    Groups investment in Better Cotton’s mission. This product is sourced via a system of mass balance
+                    and
+                    therefore may not contain Better Cotton. Learn more at Better Cotton. <br>
+                    Find out more about our material goals.
+
+                    READY FOR THE FUTURE GUIDELINES.<br><br>
+
+                    95% Polyester. 5% Elastane. Machine wash. Model wears UK size 16.<br><br>
+
+                    #GZZ37733-2
+                </p>
+            </div>
+            <div class="col-6 b-product_section" id="product-similar">
+                <h1><span>COMPLETE THE LOOK</span></h1>
+                <div style=" display: flex; ">
+                    <div style=" border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;">
+                        <img src="./assets/img/demo_similar_1.webp" alt="">
+                        <div class="product-similar_actions">
+                            <h2><span>SHOES & ACCESSORIES</span></h2>
+                            <button>SHOP NOW</button>
+                        </div>
+                    </div>
+                    <div style=" border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;">
+                        <img src="./assets/img/demo_similar_2.webp" alt="">
+                        <div class="product-similar_actions">
+                            <h2><span>NEW SEASON</span></h2>
+                            <button>SHOP NOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="l-footer-top">
+        <section class="b-footer_top">
+            <!-- <img class="m-hide-lg_up"
+                    src="https://www.boohoo.com/on/demandware.static/-/Library-Sites-boohoo-content-global-sfra/default/dwbb9b1554/images/footer/uk_payment_fooer_strip_mob_1811.svg"
+                    loading="lazy" alt="payment methods"> -->
+            <img class="m-hide-md m-hide-sm"
+                src="https://www.boohoo.com/on/demandware.static/-/Library-Sites-boohoo-content-global-sfra/default/dw623cf164/images/footer/uk_payment_fooer_strip_desk_1811.svg"
+                loading="lazy" alt="payment methods">
+        </section>
+    </div>
+
+    <footer class="container">
+        <div class="row">
+            <div class="col-2" id="quick-links">
+                <h2>QUICK LINKS</h2>
+                <ul>
+                    <li><a href="#">Track My Order</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Delivery Info</a></li>
+                </ul>
+                <h2>COUNTRY</h2>
+                <select name="language" id="language">
+                    <option value="uk">UK £</option>
+                    <option value="ireland">Ireland €</option>
+                    <option value="us">U.S. $</option>
+                </select>
+            </div>
+            <div class="col-3" id="about_us">
+                <h2>ABOUT US & MORE</h2>
+                <ul>
+                    <li><a href="#">About boohoo</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">The boohoo App</a></li>
+                    <li><a href="#">boohoo Premier</a></li>
+                    <li><a href="#">Student Discount</a></li>
+                    <li><a href="#">Discount & Promo Codes</a></li>
+                    <li><a href="#">Get Exclusive Offers & Updates</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Refer a Friend</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="col-3" id="information">
+                <h2>INFORMATION</h2>
+                <ul>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Klarna</a></li>
+                    <li><a href="#">Clearpay</a></li>
+                    <li><a href="#">PayPal</a></li>
+                    <li><a href="#">what3words</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Environmental & Social Responsibility</a></li>
+                    <li><a href="#">Modern Slavery Statement 2022</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">T&Cs</a></li>
+                    <li><a href="#">Privacy Notice - Updated July 2022</a></li>
+                    <li><a href="#">About Cookies</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="col-3" id="subscribe">
+                <h2>SUBSCRIBE! GET AN EXTRA 10% OFF & INSIDE INFO!*</h2>
+                <span style="font-size:.8rem">
+                    *Extra 10% discount sent via email to new subscribers only. By subscribing, you agree to receive
+                    marketing communications from boohoo by email. You can unsubscribe at any point.
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+
+</html>

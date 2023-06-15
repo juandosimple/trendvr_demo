@@ -1,5 +1,16 @@
 body {
-    background: #f8f8f8;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e3d8cf+0,e3d8cf+36,ffffff+36 */
+    background: rgb(227, 216, 207);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(227, 216, 207, 1) 0%, rgba(227, 216, 207, 1) 36%, rgba(255, 255, 255, 1) 36%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(227, 216, 207, 1) 0%, rgba(227, 216, 207, 1) 36%, rgba(255, 255, 255, 1) 36%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(227, 216, 207, 1) 0%, rgba(227, 216, 207, 1) 36%, rgba(255, 255, 255, 1) 36%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3d8cf', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
+
     font-family: 'Lato', sans-serif;
     /* font:13px/1.2 "Lato","Helvetica Neue","Helvetica","Arial","Nimbus Sans L","Nimbus Sans D OT","Liberation Sans",sans-serif */
 }
@@ -41,7 +52,7 @@ body img {
 .first-navigation .first-navigation_search input {
     height: 54px;
     width: 90%;
-    padding-left:1rem;
+    padding-left: 1rem;
     border: 0;
     border-left: 1px solid #ddd;
 }
@@ -200,6 +211,63 @@ footer #information ul li {
     margin-bottom: 5px;
 }
 
-.navbar.navbar-expand-lg.bg-body-tertiary{
-    border-bottom:1px solid #ddd
+.navbar.navbar-expand-lg.bg-body-tertiary {
+    border-bottom: 1px solid #ddd;
+    background-color: #ddd3cb !important;
 }
+
+/* RESPONSIVE */
+@media only screen and (max-width: 600px) {
+    .first-navigation {
+        display: none;
+    }
+
+    .navbar-nav .nav-profile {
+        display: flex;
+    }
+
+    .navbar-nav .nav-form {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    .navbar-nav .nav-form input {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .navbar-nav .nav-form input,
+    .navbar-nav .nav-form button {
+        border: 0;
+        border-radius: 2px;
+    }
+
+    .navbar-nav .nav-profile a {
+        margin-right: 10px;
+    }
+
+    footer #quick-links,
+    footer #information,
+    footer #subscribe,
+    footer #about_us {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+
+    .show_on_mobile {
+        display: block;
+    }
+    .hide_on_mobile{
+        display:none;
+    }
+}
+.show_on_desktop {
+    display: block;
+}
+.hide_on_desktop{
+    display:none;
+}
+/* RESPONSIVE */
