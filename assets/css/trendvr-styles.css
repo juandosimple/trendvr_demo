@@ -29,6 +29,7 @@ body {
     left: 0;
     width: 100px;
     display: flex;
+    z-index: 1;
 }
 
 .ui-fit_guide .fit_guide-tube {
@@ -78,10 +79,9 @@ body {
     border-radius: 25px;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
-    min-height: 85vh;
     position: relative;
-    /* width: 60%; */
     width: 100%;
+    height: 100vh;
 }
 
 .ui-main_stage .ui-main_stage-video_container video {
@@ -355,7 +355,7 @@ body {
 
 .widget-choose_color ul li.color_no_stock a {
     pointer-events: none;
-    
+
 }
 
 .widget-choose_color ul li.color_no_stock span:after {
@@ -435,14 +435,38 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-.widget-choose_size_disabled{
+.widget-choose_size_disabled {
     pointer-events: none;
     user-select: none;
     opacity: .3;
-}   
+}
+
 /* UI FIT MODAL */
 
 
 /* EXPERIMENTAL */
+.widget-zoom {
+    margin-top: 1rem;
+    display: flex;
+}
+
+.widget-zoom a {
+    text-decoration: none;
+    color: #252525;
+    margin: 5px;
+    padding: 5px 7px;
+    display: block;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    opacity:.5
+}
+
+.widget-zoom a:hover {
+    transform: translateY(-3px);
+    opacity:1;
+}
 
 /* EXPERIMENTAL */

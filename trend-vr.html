@@ -119,7 +119,7 @@
 
 <body>
     <div>
-        <div style="position: relative;padding-top: 3%;">
+        <div style="position: relative;">
             <div class="ui-fit_guide" id="fit-guide">
                 <a href="#" data-bs-toggle="tooltip"
                     data-bs-title="The greener the color around you is, the more relaxed your body will feel."><span
@@ -144,6 +144,7 @@
                 <a href="#" class="ui-main_stage-spin" onclick="takeForSpin(event)">
                     <i data-feather="refresh-ccw"></i> <span>Take it for a spin</span>
                 </a>
+
                 <div class="ui-main_stage-video_container">
                     <div class="ui-main_stage-video_container">
                         <div id="preloader" class="preloader">
@@ -168,22 +169,24 @@
                     <h5>Choose your size</h5>
                     <div class="widget-size_item_container">
                         <div class="widget-size_item">
-                            <a href="#" data-size="x-small" class="size-option" onclick="selectSize(this, event)">
+                            <a href="#" data-size="x-small" class="size size-option" onclick="selectSize(this, event)">
                                 <span>XS</span>
                             </a>
                         </div>
                         <div class="widget-size_item">
-                            <a href="#" data-size="small" class="size-option" onclick="selectSize(this, event)">
+                            <a href="#" data-size="small" class="size size-option" onclick="selectSize(this, event)">
                                 <span>S</span>
                             </a>
                         </div>
                         <div class="widget-size_item no_stock">
-                            <a href="#" data-size="medium" data-bs-toggle="tooltip" data-bs-title="No stock">
+                            <a href="#" data-size="medium" data-bs-toggle="tooltip" data-bs-title="No stock"
+                                class="size">
                                 <span>M</span>
                             </a>
                         </div>
                         <div class="widget-size_item no_stock">
-                            <a href="#" data-size="large" data-bs-toggle="tooltip" data-bs-title="No stock">
+                            <a href="#" data-size="large" data-bs-toggle="tooltip" data-bs-title="No stock"
+                                class="size">
                                 <span>L</span>
                             </a>
                         </div>
@@ -213,6 +216,15 @@
                     </div>
                     <div class="widget-choose_size"><a href="#" id="check-size-link" onclick="toggleView(event)">Check
                             fit</a></div>
+
+                    <div class="widget-zoom">
+                        <a href="#" id="zoom-in" onclick="zoom('in',event)">
+                            <i data-feather="zoom-in"></i>
+                        </a>
+                        <a href="#" id="zoom-out" onclick="zoom('out',event)">
+                            <i data-feather="zoom-out"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,10 +257,17 @@
         var video = document.getElementById('video');
         var preloader = document.getElementById('preloader');
         var link = document.getElementById("check-size-link");
+        var zoomIn = document.getElementById("zoom-in");
+        var zoomOut = document.getElementById("zoom-out");
         var isNormalView = true;
 
         feather.replace();
-
+        anime({
+            targets: '#video',
+            translateY: -10,
+            duration: 500,
+            easing: 'spring(1, 80, 10, 0)',
+        });
         anime({
             targets: '.ui-sidebar-size_widget',
             translateY: 50,
@@ -261,7 +280,7 @@
                     opacity: 1,
                     duration: 500,
                     translateY: function (el, i) {
-                        return 20 + (-25 * i);
+                        return -10 + (-25 * i);
                     },
                     easing: 'spring(1, 50, 10, 0)'
                 });
@@ -271,6 +290,33 @@
         video.addEventListener('canplaythrough', function () {
             video.play();
         });
+
+        // SCALE
+        function zoom(type, event) {
+            event.preventDefault();
+
+            var videoElement = document.getElementById('video');
+            var translateY = 0;
+            var scale = 1;
+
+            if (type === 'in') {
+                scale = 2; // Incremento de zoom in
+                translateY = 190
+            } else if (type === 'out') {
+                scale = 1; // Decremento de zoom out
+                translateY = 0
+            }
+
+            anime({
+                targets: videoElement,
+                translateY: translateY,
+                scale: scale,
+                duration: 500,
+                easing: 'spring(1, 80, 10, 0)',
+            });
+        }
+
+        // SCALE
 
         function toggleView(event) {
             event.preventDefault();
@@ -299,7 +345,7 @@
                             })
                             .add({
                                 targets: '.ui-fit_modal',
-                                translateY: 20,
+                                translateY: -50,
                                 opacity: 1,
                             })
                     } else {
@@ -340,6 +386,8 @@
             });
         }
 
+
+        // SIZE
         var currentSize = ''; // Declarar la variable currentSize fuera de la función
 
         function selectSize(size, event) {
@@ -351,6 +399,13 @@
                 return; // No realizar cambios si se selecciona el mismo tamaño nuevamente
             }
             currentSize = newSize;
+
+            const allSizes = document.querySelectorAll('.size'); // Obtener todos los elementos con la clase 'size'
+            allSizes.forEach(function (size) {
+                size.classList.remove('active-size'); // Eliminar la clase 'active-size' de todos los tamaños
+            });
+
+            size.classList.add('active-size'); // Añadir la clase 'active-size' al tamaño seleccionado
 
             anime({
                 targets: "#video",
@@ -380,6 +435,9 @@
                 }
             });
         }
+
+        // SIZE
+
 
         function selectColor(color, event) {
             event.preventDefault();
